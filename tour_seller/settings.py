@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tours',
+    'airlines',
+    'places',
+    'consumers',
+    'tourOperators',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +83,8 @@ WSGI_APPLICATION = 'tour_seller.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR,'extra', 'tour_seller.sqlite3'),#'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR,'extra', 'tour_seller.sqlite3'),#'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -105,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
