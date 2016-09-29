@@ -17,6 +17,8 @@ class Tour(models.Model):
     capacity = models.PositiveIntegerField()
     destination = models.ForeignKey(Hotel)
     departureCity = models.ForeignKey(City)
+    booking = models.ForeignKey(Booking)
+
 
 
 def __str__(self):
