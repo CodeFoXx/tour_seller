@@ -13,3 +13,4 @@ class Booking(models.Model):
     startDate = models.DateTimeField()
     finDate = models.DateTimeField()
     consumer = models.ForeignKey(Consumer)
+
