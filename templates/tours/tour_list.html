@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Туры{% endblock %}</h1>
+    <ol>
+        {% for tour in tour_list %}
+            <li>{{ tour }}</li>
+        {% endfor %}
+    </ol>
+{% endblock %}
