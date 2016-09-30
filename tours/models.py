@@ -20,7 +20,6 @@ class Tour(models.Model):
     booking = models.ForeignKey(Booking)
 
 
-
 def __str__(self):
     return '{} ({:%Y-%m-%d} - {:%Y-%m-%d})'.format(
         self.name, self.start, self.end)
