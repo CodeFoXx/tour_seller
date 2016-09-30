@@ -4,7 +4,7 @@ from airlines.models import Airline
 from tourOperators.models import TourOperator
 from places.models import Hotel
 from places.models import City
-from consumers.models import Booking
+# from consumers.models import Booking
 
 
 class Tour(models.Model):
@@ -17,12 +17,11 @@ class Tour(models.Model):
     capacity = models.PositiveIntegerField()
     destination = models.ForeignKey(Hotel)
     departureCity = models.ForeignKey(City)
-    booking = models.ForeignKey(Booking)
+    # booking = models.ForeignKey(Booking)
 
-
-def __str__(self):
-    return '{} ({:%Y-%m-%d} - {:%Y-%m-%d})'.format(
-        self.name, self.start, self.end)
+    def __str__(self):
+        return '{} ({:%d-%m-%Y} - {:%d-%m-%Y})'.format(
+            self.name, self.startDate, self.finDate)
 
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from tours.models import Tour
 
 
 class Consumer(models.Model):
@@ -16,8 +17,10 @@ class Booking(models.Model):
     startDate = models.DateTimeField()
     finDate = models.DateTimeField()
     consumer = models.ForeignKey(Consumer)
+    tour = models.ForeignKey(Tour)
 
     def __str__(self):
-        return u'{}, {}, {}, {}'.format(self.status,self.startDate,self.finDate, self.consumer)
+        return u'{}, {}, {}, {}, {}'.format(self.status,self.startDate,self.finDate, self.consumer,
+                                            self.tour)
 
 
