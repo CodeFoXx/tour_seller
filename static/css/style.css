@@ -1,0 +1,146 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.btn {
+    box-shadow: none;
+    background-color: #E03030;
+    border-color: #FFFFFF;
+}
+
+.btn:focus {
+    box-shadow: none;
+    background-color: #E03030;
+    border-color: #FFFFFF;
+}
+
+.btn:hover {
+    box-shadow: none;
+    background-color: #AD3C3C;
+    border-color: #FFFFFF;
+}
+
+.btn:active {
+    box-shadow: none;
+    background-color: #E03030;
+    border-color: #FFFFFF;
+}
+
+.btn:active:focus {
+    box-shadow: none;
+    background-color: #E03030;
+    border-color: #FFFFFF;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+div.elementdiv {
+    background-color: #EDEDED;
+    border: 1px #AAA dotted;
+    margin-top: 12px;
+    padding: 20px;
+}
+
+div.elementdiv_white {
+    background-color: #FFFFFF;
+    border: 1px #AAA dotted;
+    margin-top: 12px;
+    padding: 20px;
+    align-content: center;
+}
+
+div.objdiv {
+    width: 800px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+div.objdiv_header {
+    width: 100%;
+    background-color: #E03030;
+}
+
+div.objdiv_header_left {
+    padding-left: 20px;
+    width: 70%;
+    font-size: 14pt;
+    background-color: #E03030;
+    color: #FFFFFF;
+    display: inline-block;
+}
+
+div.objdiv_header_right {
+    background-color: #E03030;
+    font-size: 14pt;
+    color: #FFFFFF;
+    display: inline-block;
+}
+
+div.objdiv_body {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #EDEDED;
+    color: #000000;
+}
+
+div.objdiv_footer {
+    width: 100%;
+    background-color: #EDEDED;
+}
+
+div.objdiv_footer_left {
+    padding-left: 20px;
+    width: 70%;
+    background-color: #EDEDED;
+    color: #FFFFFF;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+div.objdiv_footer_right {
+    background-color: #EDEDED;
+    color: #FFFFFF;
+    display: inline-block;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
