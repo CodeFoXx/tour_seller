@@ -15,7 +15,7 @@ class Tour(models.Model):
     airline = models.ForeignKey(Airline)
     tourOperator = models.ForeignKey(TourOperator)
     capacity = models.PositiveIntegerField()
-    destination = models.ForeignKey(Hotel)
+    hotel = models.ForeignKey(Hotel)
     departureCity = models.ForeignKey(City)
     # booking = models.ForeignKey(Booking)
 
