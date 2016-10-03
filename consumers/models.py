@@ -14,13 +14,13 @@ class Consumer(models.Model):
 
 class Booking(models.Model):
     status = models.CharField(max_length=50)
-    startDate = models.DateTimeField()
-    finDate = models.DateTimeField()
-    consumer = models.ForeignKey(Consumer)
-    tour = models.ForeignKey(Tour)
+    start_date = models.DateTimeField()
+    fin_date = models.DateTimeField()
+    consumer = models.ForeignKey(Consumer, null=True)
+    tour = models.ForeignKey(Tour, null=True)
 
     def __str__(self):
-        return u'{}, {}, {}, {}, {}'.format(self.status,self.startDate,self.finDate, self.consumer,
+        return u'{}, {}, {}, {}, {}'.format(self.status,self.start_date,self.fin_date, self.consumer,
                                             self.tour)
 
 
