@@ -17,7 +17,7 @@ class Tour(models.Model):
     capacity = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel)
     departure_city = models.ForeignKey(City)
-    # image = models.ImageField()
+    image = models.ImageField(default='NULL')
     # booking = models.ForeignKey(Booking)
 
     def __str__(self):
