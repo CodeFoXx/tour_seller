@@ -96,4 +96,8 @@ ENV/
 .idea/workspace.xml
 tour_seller/__pycache__/
 tour_seller/extra/
-tour_seller/templates/
+tour_seller/bower_components/
+tour_seller/node_modules/
+
+
+
