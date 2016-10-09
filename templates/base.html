@@ -26,11 +26,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href = "{% url 'index' %}">Главная</a></li>
-                    <li><a href = "adasd">Туры</a></li>
-                    <li id="licart" style="display: none">Корзина</liid>
+                    <li><a href = "{% url 'tour_list' %}">Туры</a></li>
+                    <li id="licart" style="display: none">Корзина</li>
                     <li id="lilogin" style="display: block"><a href = "adasd">Войти</a></li>
-                    <li id="lilogout" style="display: none; cursor: pointer"><a onclick="tryLogout()"><a href = "adasd">Выйти</a></li>
-                    <li id="liregister" style="display: block"><a href = "adasd">Регистрация</a></li>
+                    <li id="lilogout" style="display: none; cursor: pointer"><a onclick="tryLogout()", href = "adasd">Выйти</a></li>
+                    <li id="liregister" style="display: block"><a href = "/reg/">Регистрация</a></li>
                     <li id="liprofile" style="display: none"><a href = "adasd">Профиль</a></li>
                 </ul>
             </div>

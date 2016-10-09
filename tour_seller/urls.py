@@ -25,4 +25,9 @@ urlpatterns = [
     url(r'^consumers/', include('consumers.urls')),
     url(r'^airlines/', include('airlines.urls')),
     url(r'^tour_seller/', views.index, name='index'),
+url(r'^reg/', include('logsys.urls')),
+
+
+
+
 ]
