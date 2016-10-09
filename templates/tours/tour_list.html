@@ -5,6 +5,9 @@
     <ol>
         {% for tour in tour_list %}
             <li>{{ tour }}</li>
+            {% if tour.image %}
+                 <img src=" {{ MEDIA_URL }}{{ tour.image.url }}" style="width:190px;height:150px;">
+            {% endif %}
         {% endfor %}
     </ol>
 {% endblock %}

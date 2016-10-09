@@ -1,4 +1,7 @@
 from django.db import models
+from PIL import Image
+
+from django.contrib import admin
 
 from airlines.models import Airline
 from tourOperators.models import TourOperator
@@ -17,12 +20,16 @@ class Tour(models.Model):
     capacity = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel)
     departure_city = models.ForeignKey(City)
-    image = models.ImageField(default='NULL')
+    image = models.ImageField(blank=True,
+                              upload_to='images/tours/',
+                              help_text='150x150px',
+                              verbose_name='Изображение тура')
     # booking = models.ForeignKey(Booking)
 
     def __str__(self):
         return '{} ({:%d-%m-%Y} - {:%d-%m-%Y})'.format(
             self.name, self.start_date, self.fin_date)
+
 
 
 

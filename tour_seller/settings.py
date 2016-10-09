@@ -17,21 +17,22 @@ from pathlib import Path
 PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
+
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = '47cf$ofb!!*g_w)_3r__lc_2ep7s-vqu9kmb0h6m=xcee1aq^c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,8 +82,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tour_seller.wsgi.application'
 
-
 # Database
+
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
@@ -89,11 +91,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         #'NAME': os.path.join(BASE_DIR,'extra', 'tour_seller.sqlite3'),#'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        }
 }
 
-
 # Password validation
+
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -109,13 +111,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+
 ]
-
-
 # Internationalization
+
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
+
 LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
@@ -126,15 +129,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
+
+# os.path.join(BASE_DIR, 'static'),
+
 # ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    str(PROJECT_PACKAGE.joinpath('static'))
+    os.path.join(BASE_DIR, 'static'),
 ]
+
