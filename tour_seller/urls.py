@@ -20,9 +20,10 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tours/', include('tours.urls')),
-    url(r'^tourOperators/', include('tourOperators.urls')),
+    url(r'^touroperators/', include('touroperators.urls')),
     url(r'^places/', include('places.urls')),
     url(r'^consumers/', include('consumers.urls')),
     url(r'^airlines/', include('airlines.urls')),
     url(r'^tour_seller/', views.index, name='index'),
+    url(r'^tour_seller/', views.register, name='register'),
 ]
