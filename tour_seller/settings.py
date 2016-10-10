@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'places',
     'consumers',
     'touroperators',
+    'logsys',
+
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(PROJECT_PACKAGE.joinpath('static'))
 ]
+
+
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
