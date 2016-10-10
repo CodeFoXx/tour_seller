@@ -4,13 +4,31 @@
 {% block content %}
 
     <h2>Регистрация</h2>
+    <div class="elementdiv">
+        <form action="/register/" method="post">
+            {% csrf_token %}
+            <div class="div_body">
+                <div class="col-md-10">
+                    Адрес электронной почты:<br />
+                    {{ form.username }}
+                </div>
+                <div class="col-md-10">
+                    Пароль:<br />
+                    {{ form.password1 }}
+                </div>
+                <div class="col-md-10">
+                    Повторение пароля:<br />
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Зарегистрироваться" class="btn btn-primary btn-large" />
+                </div>
+            </div>
 
-    <form action="/reg/" method="post">
-        {% csrf_token %}
-        {{form}}
 
-
-  <input type="submit" value="Зарегистрироваться">
-  </form>
+        </form>
+    </div>
 {% endblock %}
 

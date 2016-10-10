@@ -26,8 +26,8 @@ urlpatterns = [
     url(r'^airlines/', include('airlines.urls')),
     url(r'^$', views.index),
     url(r'^index', views.index, name='index'),
-    url(r'^register', views.register, name='register'),
+    # url(r'^register', views.register, name='register'),
     url(r'^logon', views.logon, name='logon'),
-    url(r'^reg/', include('logsys.urls')),
+    url(r'^register/', include('logsys.urls')),
 
 ]
