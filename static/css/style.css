@@ -85,16 +85,25 @@ div.elementdiv_white {
     padding: 20px;
     align-content: center;
 }
+div.contentbody {
+    width: 100%;
+    align-content: left;
+    padding-left: 40px;
+}
 
 div.objdiv {
     width: 800px;
-    margin: auto;
     margin-bottom: 20px;
 }
 
 div.objdiv_header {
     width: 100%;
     background-color: #E03030;
+}
+
+div.objdiv_subheader {
+    width: 100%;
+    background-color: #e4b9b0;
 }
 
 div.objdiv_header_left {
@@ -116,9 +125,18 @@ div.objdiv_header_right {
 div.objdiv_body {
     padding-left: 20px;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     background-color: #EDEDED;
     color: #000000;
+}
+
+div.objdiv_body_info {
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #EDEDED;
+    color: #000000;
+    display: none;
 }
 
 div.objdiv_footer {

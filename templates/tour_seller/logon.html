@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="elementdiv">
+        <form id="pform" name="pform" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-10">
+                    Логин (e-mail):<br />
+                    <input id="ulogin" type="text">
+                </div>
+                <div class="col-md-10">
+                    Пароль:<br />
+                    <input id="upwd" type="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input id="submit" onclick="tryLogon()" type="button" value="Войти" class="btn btn-primary btn-large" />
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

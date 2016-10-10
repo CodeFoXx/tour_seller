@@ -6,7 +6,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from tours.views import TourListView
 
 urlpatterns = [
-    url('^$', TourListView.as_view(), name='tour_list')
+    url('^$', TourListView.as_view(), name='tour_list'),
 ]
 
 
