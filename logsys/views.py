@@ -23,5 +23,5 @@ def register(request):
         return HttpResponseRedirect('/')
     else:
         args['form'] = newuser_form
-        return render_to_response('register/register.html', args)
+        return render_to_response('logsys/register.html', args)
 

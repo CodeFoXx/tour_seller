@@ -1,0 +1,17 @@
+{
+  "name": "tour_seller",
+  "homepage": "https://github.com/CodeFoXx/tour_seller",
+  "authors": [
+    "Polina Osina <polinaosina14@gmail.com>"
+  ],
+  "description": "project for selling tours",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from touroperators.models import TourOperator
+from tourOperators.models import TourOperator
 
 
 class TourOperListView(ListView):
