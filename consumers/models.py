@@ -1,15 +1,25 @@
 from django.db import models
 from tours.models import Tour
 
+class ConsumerManager(models.Manager):
+    def create_consumer(self, email, password):
+        user = self.create(email=email, password=password)
+        # do something with the book
+        return user
 
 class Consumer(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     phone = models.CharField(max_length=11)
+    password = models.CharField(max_length=11,default="")
+    objects = ConsumerManager()
 
     def __str__(self):
-        return u'{}, {}, {}, {}'.format(self.name,self.surname,self.email, self.phone)
+        return u'{}, {}, {}, {}'.format(self.name, self.surname, self.email, self.phone)
+
+
+
 
 
 class Booking(models.Model):
@@ -20,7 +30,5 @@ class Booking(models.Model):
     tour = models.ForeignKey(Tour, null=True)
 
     def __str__(self):
-        return u'{}, {}, {}, {}, {}'.format(self.status,self.start_date,self.fin_date, self.consumer,
+        return u'{}, {}, {}, {}, {}'.format(self.status, self.start_date, self.fin_date, self.consumer,
                                             self.tour)
-
-
