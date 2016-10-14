@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User, UserManager
 from tours.models import Tour
 
 
@@ -10,6 +11,12 @@ class Consumer(models.Model):
 
     def __str__(self):
         return u'{}, {}, {}, {}'.format(self.name,self.surname,self.email, self.phone)
+
+
+# class NewConsumer(User):
+#     phone = models.CharField(max_length=11)
+#     object = UserManager()
+#     user = Consumer.objects.create()
 
 
 class Booking(models.Model):

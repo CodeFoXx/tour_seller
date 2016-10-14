@@ -10,25 +10,24 @@
                     <div class="objdiv_header_right">{{ tour.price }} руб</div>
                 </div>
                 <div class="objdiv_body">
-                    Путешествие из г. {{ tour.departure_city.name }} в г. {{ tour.hotel.city.name }} <br/>
-                    Время отбытия: {{ tour.start_date }} <br/>
-                    Время прибытия обратно: {{ tour.fin_date }} <br/>
-
-
+                    <div class="objdiv_body_txt">
+                        Путешествие из г. {{ tour.departure_city.name }} в г. {{ tour.hotel.city.name }} <br/>
+                        Время отбытия: {{ tour.start_date }} <br/>
+                        Время прибытия обратно: {{ tour.fin_date }} <br/>
+                    </div>
+                    <div class="objdiv_body_img">
+                        <span class="imgPicture">
+                                <img src=" {{ MEDIA_URL }}{{ tour.image.url }}" alt="css template" width="190px" ><br/>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="objdiv_body_info" id="tourinfo{{ tour.id }}">
-
-                    <div class="objdiv_body_txt">
-                        Отель: {{ tour.hotel.name }}, {{ tour.hotel.stars}} звезд<br/>
-                        Страна: {{ tour.hotel.city.country }}<br/>
-                        Авиакомпания: {{ tour.airline }}<br/>
-                        Туроператор: {{ tour.tour_operator.name }}<br/>
-                        Количество свободных мест: {{ tour.capacity }}<br/>
-                    </div>
-                    <div class="objdiv_body_img">
-                        <img src=" {{ MEDIA_URL }}{{ tour.image.url }}" class="img-thumbnail" ></br>
-                    </div>
+                    Отель: {{ tour.hotel.name }}, {{ tour.hotel.stars}} звезд<br/>
+                    Страна: {{ tour.hotel.city.country }}<br/>
+                    Авиакомпания: {{ tour.airline }}<br/>
+                    Туроператор: {{ tour.tour_operator.name }}<br/>
+                    Количество свободных мест: {{ tour.capacity }}<br/>
                 </div>
                 <div class="objdiv_footer">
                     <div class="objdiv_footer_left">&nbsp;</div>

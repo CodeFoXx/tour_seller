@@ -2,6 +2,7 @@ from django.db import models
 from PIL import Image
 from django.contrib import admin
 
+
 from airlines.models import Airline
 from tourOperators.models import TourOperator
 from places.models import Hotel
