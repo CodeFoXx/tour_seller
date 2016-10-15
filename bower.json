@@ -1,0 +1,17 @@
+{
+  "name": "tour_seller",
+  "homepage": "https://github.com/CodeFoXx/tour_seller",
+  "authors": [
+    "YMaks <YelenaMaksimova@yandex.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
