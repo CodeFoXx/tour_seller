@@ -74,9 +74,12 @@ input[type="checkbox"].input-validation-error {
 div.elementdiv {
     background-color: #EDEDED;
     border: 2px #AAA dotted;
-    margin-top: 12px;
+    margin-top: 20px;
     padding: 20px;
-
+    width: 400px;
+    align-content: center;
+    align-self: center;
+    display: inline-block;
 }
 
 div.elementdiv_white {
@@ -196,7 +199,8 @@ div.objdiv_footer_right {
   }
 
 
-.vcenter {
-  float: none;
-  vertical-align: middle;
+.my-col {
+    display: inline-block;
 }
+
+

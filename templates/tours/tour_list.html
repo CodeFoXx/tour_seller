@@ -27,12 +27,36 @@
                     Страна: {{ tour.hotel.city.country }}<br/>
                     Авиакомпания: {{ tour.airline }}<br/>
                     Туроператор: {{ tour.tour_operator.name }}<br/>
-                    Количество свободных мест: {{ tour.capacity }}<br/>
+                    Количество свободных мест: {{ tour.capacity }}<br/> <br/>
+                    {#                    <div class="objdiv_footer_right">&nbsp;</div>#}
+                    <div class="input-group spinner">
+                        Количество человек: <br/>
+                        <input type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0">
+                    </div> <br/>
+                    <div class="objdiv_footer">
+                        <a href="javascript: var isBooked = confirm('Вы действительно хотите забронировать тур?')" class="btn btn-danger btn-large">Забронировать</a>
+                        <a href="javascript: var isBought = confirm('Вы действительно хотите купить тур?')" class="btn btn-danger btn-large">Купить</a>
+                    </div>
                 </div>
                 <div class="objdiv_footer">
                     <div class="objdiv_footer_left">&nbsp;</div>
+                    <script type="text/javascript">
+                            function change(el) {
+                                if (el.name=='Подробнее')
+                                {
+                                    el.name='Скрыть'
+                                }
+
+                                else
+                                {
+                                    el.name='Подробнее'
+                                }
+
+                            }
+                        </script>
                     <div class="objdiv_footer_right">
-                        <a href="javascript: change_display_tour_div('tourinfo{{ tour.id }}')" class="btn btn-danger btn-large">Подробнее</a>
+                        <a href="javascript: change_display_tour_div('tourinfo{{ tour.id }}')" class="btn btn-danger btn-large" onclick="return change(this)"> Подробнее</a>
+
                     </div>
                 </div>
             </div>
