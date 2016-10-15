@@ -73,7 +73,7 @@ input[type="checkbox"].input-validation-error {
 
 div.elementdiv {
     background-color: #EDEDED;
-    border: 1px #AAA dotted;
+    border: 2px #AAA dotted;
     margin-top: 12px;
     padding: 20px;
 }
@@ -130,9 +130,26 @@ div.objdiv_body {
     color: #000000;
 }
 
+div.objdiv_body_img {
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 190px;
+    height: 150px;
+    float: right;
+    background-color: rgba(237, 237, 237, 0.45);
+    color: #000000;
+}
+div.objdiv_body_txt {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    float: left;
+    background-color: rgba(237, 237, 237, 0.45);
+    color: #000000;
+}
+
 div.objdiv_body_info {
     padding-left: 20px;
-    padding-top: 0px;
+    padding-top: 80px;
     padding-bottom: 0px;
     background-color: #EDEDED;
     color: #000000;
@@ -146,7 +163,7 @@ div.objdiv_footer {
 
 div.objdiv_footer_left {
     padding-left: 20px;
-    width: 70%;
+    width: 80%;
     background-color: #EDEDED;
     color: #FFFFFF;
     display: inline-block;

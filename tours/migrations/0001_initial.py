@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         ('places', '0001_initial'),
         ('airlines', '0001_initial'),
         ('consumers', '0001_initial'),
-        ('touroperators', '0001_initial'),
+        ('tourOperators', '0001_initial'),
     ]
 
     operations = [
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('booking', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='consumers.Booking')),
                 ('departureCity', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.City')),
                 ('destination', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.Hotel')),
-                ('tourOperator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='touroperators.TourOperator')),
+                ('tourOperator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tourOperators.TourOperator')),
             ],
         ),
     ]
