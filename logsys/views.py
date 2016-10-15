@@ -17,7 +17,7 @@ def register(request):
     newuser_form = UserCreationForm(request.POST)
 
     if newuser_form.is_valid():
-        user = User.objects.create_user(username=newuser_form.cleaned_data['username'], password=newuser_form.cleaned_data['password2'])
+        user = Consumer.objects.create_consumer(email=newuser_form.cleaned_data['username'], password=newuser_form.cleaned_data['password2'])
         user.is_active = False
         user.save()
         return HttpResponseRedirect('/')
