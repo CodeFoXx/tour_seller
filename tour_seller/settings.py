@@ -134,19 +134,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, "static"),
-    '/bower_components/dist/static'
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'bower_components/bootstrap/dist'),
+    os.path.join(BASE_DIR, 'bower_components/jquery/dist')
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    str(PROJECT_PACKAGE.joinpath('static'))
-]
-
 
 PASSWORD_HASHERS = (
 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
