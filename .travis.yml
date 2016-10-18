@@ -5,7 +5,5 @@ python:
 before_install:
     - "pip install -r requirments.txt"
     - pip install flake8
-before_script:
-    flake8 .
 script:
     - py.test
