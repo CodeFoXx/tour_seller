@@ -6,6 +6,7 @@ from airlines.models import Airline
 from tourOperators.models import TourOperator
 from places.models import Hotel
 from places.models import City
+from django.forms import ModelForm
 # from consumers.models import Booking
 
 
@@ -31,6 +32,11 @@ class Tour(models.Model):
 
 
 
+class AddTourForm(ModelForm):
+    class Meta:
+        model = Tour
+        fields = '__all__'
+        #exclude = ['title']
 
 
 
