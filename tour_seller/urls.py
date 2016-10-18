@@ -22,7 +22,6 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tours/', include('tours.urls')),
-    url(r'^tourOperators/', include('tourOperators.urls')),
     url(r'^places/', include('places.urls')),
     url(r'^consumers/', include('consumers.urls')),
     url(r'^airlines/', include('airlines.urls')),
@@ -32,5 +31,6 @@ urlpatterns = [
     url(r'^logon', views.logon, name='logon'),
     url(r'^register/', include('logsys.urls')),
     # url(r'^tour_seller/', views.index, name='index'),
+    url(r'^add_tour/', include('tours.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

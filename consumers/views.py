@@ -1,13 +1,9 @@
 from django.views.generic import ListView
 
-from consumers.models import Consumer
 from consumers.models import Booking
 from consumers.models import Buying
 from consumers.models import Status
 
-
-class ConsumerListView(ListView):
-    model = Consumer
 
 
 class BookingListView(ListView):
