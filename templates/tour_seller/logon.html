@@ -2,16 +2,23 @@
 
 
 {% block content %}
+    {% comment %}<div class="invdiv">
+        <h2>Вход</h2>
+    </div>{% endcomment %}
     <div class="elementdiv">
         <form id="pform" name="pform" class="form-horizontal">
             <div class="form-group">
-                <div class="col-md-10">
-                    Логин (e-mail):<br />
-                    <input id="ulogin" type="text">
+                <div class="col-md-12">
+                    Пожалуйста, авторизируйтесь.
+                    <br/><br/>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
+                    Логин (e-mail):<br />
+                    <input id="ulogin" type="text" class="reglog">
+                </div>
+                <div class="col-md-12">
                     Пароль:<br />
-                    <input id="upwd" type="password">
+                    <input id="upwd" type="password" class="reglog">
                 </div>
             </div>
             <div class="form-group">

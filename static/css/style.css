@@ -63,6 +63,10 @@ input[type="checkbox"].input-validation-error {
     border: 0 none;
 }
 
+input.reglog {
+    width: 100%;
+}
+
 .validation-summary-errors {
     color: #b94a48;
 }
@@ -71,15 +75,27 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+div.invdiv {
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    margin-top: 3%;
+}
+
+div.invdiv {
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    margin-top: 3%;
+}
+
 div.elementdiv {
+    width: 40%;
+    margin: auto;
     background-color: #EDEDED;
     border: 2px #AAA dotted;
-    margin-top: 20px;
+    margin-top: 12px;
     padding: 20px;
-    width: 400px;
-    align-content: center;
-    align-self: center;
-    display: inline-block;
 }
 
 div.elementdiv_white {
@@ -137,6 +153,8 @@ div.objdiv_body {
 div.objdiv_body_img {
     padding-right: 10px;
     padding-top: 5px;
+    width: 190px;
+    height: 150px;
     float: right;
     background-color: rgba(237, 237, 237, 0.45);
     color: #000000;

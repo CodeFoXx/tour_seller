@@ -2,40 +2,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <h2 class="text-center" style="text-shadow: 4px 4px 9px rgba(130, 97, 109, 0.45),
-0px -5px 35px rgba(70, 70, 70, 0.3); color: rgba(18, 23, 23, 0.8); font-family: 'Geeza Pro'; font-weight: 700"  >РЕГИСТРАЦИЯ</h2>
-
-    <div class="elementdiv col-md-6 col-md-offset-4 text-center">
+{#     <div class="invdiv">#}
+{#        <h2>Регистрация</h2>#}
+{#    </div>#}
+    <div class="elementdiv">
         <form action="/register/" method="post" class="form-horizontal">
             {% csrf_token %}
             <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 my-col text-center" >
-                        Адрес электронной почты: <br />
-                        {{ form.username }}<br />
-                    </div>
-                    <div class="col-md-6 col-md-offset-3 my-col text-center">
-                        Пароль:<br />
-                        {{ form.password1 }}<br />
-                    </div>
-                    <div class="col-md-6 col-md-offset-3 my-col text-center">
-                        Повторение пароля:<br />
-                        {{ form.password2 }}<br />
-                    </div>
+                <div class="col-md-12">
+                    Пожалуйста, введите регистрационные данные.
+                    <br/><br/>
+                </div>
+                <div class="col-md-12">
+                    Адрес электронной почты:<br />
+                    {{ form.username }}
+                </div>
+                <div class="col-md-12">
+                    Пароль:<br />
+                    {{ form.password1 }}
+                </div>
+                <div class="col-md-12">
+                    Повторение пароля:<br />
+                    {{ form.password2 }}
                 </div>
             </div>
-
-
             <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 my-col text-center">
-                        <input type="submit" value="Зарегистрироваться" class="btn btn-primary btn-large" />
-                    </div>
+                <div class="col-md-10">
+                    <input type="submit" value="Зарегистрироваться" class="btn btn-primary btn-large" />
                 </div>
             </div>
         </form>
     </div>
 {% endblock %}
-
 
