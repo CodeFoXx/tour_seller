@@ -32,5 +32,7 @@ urlpatterns = [
     url(r'^register/', include('logsys.urls')),
     # url(r'^tour_seller/', views.index, name='index'),
     url(r'^add_tour/', include('tours.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -10,6 +10,8 @@ from places.models import City
 from django.forms import ModelForm
 # from consumers.models import Booking
 
+from tour_seller.settings import MEDIA_ROOT
+import os
 
 class Tour(models.Model):
     name = models.CharField(max_length=50)
@@ -22,7 +24,7 @@ class Tour(models.Model):
     hotel = models.ForeignKey(Hotel)
     departure_city = models.ForeignKey(City)
     image = models.ImageField(blank=True,
-                              upload_to='images/tours/',
+                              upload_to = os.path.join('images', 'tours'), #'/images/tours/',
                               help_text='150x150px',
                               verbose_name='Изображение тура')
     # booking = models.ForeignKey(Booking)

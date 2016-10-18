@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="elementdiv">
-        <form action="/add_tour/" method="post" class="form-horizontal">
+        <form action="/add_tour/" method="post" class="form-horizontal" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
             <div class="form-group">

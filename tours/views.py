@@ -17,7 +17,7 @@ class TourListView(ListView):
 @login_required
 def add_tour(request):
     if request.method == 'POST':
-        form = AddTourForm(request.POST)
+        form = AddTourForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
