@@ -1,9 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from PIL import Image
 from django.contrib import admin
 
 from airlines.models import Airline
-from tourOperators.models import TourOperator
 from places.models import Hotel
 from places.models import City
 from django.forms import ModelForm
@@ -16,7 +16,7 @@ class Tour(models.Model):
     start_date = models.DateTimeField()
     fin_date = models.DateTimeField()
     airline = models.ForeignKey(Airline)
-    tour_operator = models.ForeignKey(TourOperator)
+    tour_operator = models.ForeignKey(User)
     capacity = models.PositiveIntegerField()
     hotel = models.ForeignKey(Hotel)
     departure_city = models.ForeignKey(City)
