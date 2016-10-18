@@ -17,7 +17,7 @@
                     </div>
                     <div class="objdiv_body_img">
                         <span class="imgPicture">
-                                <img src=" {{ MEDIA_URL }}{{ tour.image.url }}" alt="css template" width="190px" ><br/>
+                                <img src=" {{ MEDIA_URL }}{{ tour.image.url|default_if_none:'#' }}" alt="css template" width="190px" ><br/>
                         </span>
                     </div>
                 </div>

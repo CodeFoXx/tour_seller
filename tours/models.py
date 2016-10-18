@@ -31,6 +31,11 @@ class Tour(models.Model):
         return '{} ({:%d-%m-%Y} - {:%d-%m-%Y})'.format(
             self.name, self.start_date, self.fin_date)
 
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
 
 
 class AddTourForm(ModelForm):

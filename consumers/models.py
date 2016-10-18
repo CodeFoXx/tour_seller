@@ -10,6 +10,15 @@ allTours = Tour.objects.all()
 def get_deadline():
     return datetime.utcnow() + timedelta(days=1)
 
+class Status(models.Model):
+    status = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = 'Statuses'
+
+    def __str__(self):
+        return u'{}'.format(self.status)
+
 
 class Booking(models.Model):
     status = models.ForeignKey(Status, null=True)
@@ -52,5 +61,5 @@ class Buying(models.Model):
         return cs
 
     def __str__(self):
-        return u'{}, ({:%d-%m-%Y}), {} руб, {}, {}'.format(self.status, self.buy_date, self.final_cost, self.consumer.name,
+        return u'{}, ({:%d-%m-%Y}), {} руб, {}, {}'.format(self.status, self.buy_date, self.final_cost, self.consumer,
                                             self.tour.name)
