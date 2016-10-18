@@ -20,7 +20,7 @@ class City(models.Model):
         verbose_name_plural = 'cities'
 
     def __str__(self):
-        return u'{0},{1}'.format(self.country,self.name)
+        return u'{0},{1}'.format(self.country, self.name)
 
 
 class Hotel(models.Model):

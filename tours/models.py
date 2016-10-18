@@ -35,3 +35,6 @@ class Tour(models.Model):
 
 
 
+
+
+
