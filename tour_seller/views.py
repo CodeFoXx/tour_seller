@@ -27,6 +27,7 @@ def is_touroperator(user):
 def logon(request):
     c = {}
     c.update(csrf(request))
+    newuser_form=AuthenticationForm
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
