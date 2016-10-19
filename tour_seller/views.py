@@ -16,12 +16,11 @@ def logon(request):
         password = request.POST['password']
         seo_specialist = authenticate(username=username, password=password)
         if seo_specialist is not None:
-            # если вошел
-           # return render_to_response('base.html')
+            #если вошел перенаправляет на главную страницу
             return HttpResponseRedirect('/')
         else:
             # если не вошел
-            return render_to_response('tours/tour_list.html')
+            return render_to_response('tour_seller/error_logon.html',c)
     else:
         # если POST запрос не был отправлен
         return render_to_response('tour_seller/logon.html', c)
