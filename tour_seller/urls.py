@@ -27,10 +27,11 @@ urlpatterns = [
     url(r'^airlines/', include('airlines.urls')),
     url(r'^$', views.index),
     url(r'^index', views.index, name='index'),
-    # url(r'^register', views.register, name='register'),
     url(r'^logon', views.logon, name='logon'),
+    url(r'^logout_user', views.logout_user, name='logout_user'),
+    url(r'^touroperator_dashboard', views.touroperator_dashboard, name='dashboard'),
+    url(r'^consumer_dashboard', views.consumer_dashboard, name='dashboard'),
     url(r'^register/', include('logsys.urls')),
-    # url(r'^tour_seller/', views.index, name='index'),
     url(r'^add_tour/', include('tours.urls')),
 ]
 

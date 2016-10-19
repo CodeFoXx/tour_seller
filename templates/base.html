@@ -1,6 +1,7 @@
 {% load static %}
+{% load tour_seller_extras %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
@@ -28,12 +29,18 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href = "{% url 'index' %}">Главная</a></li>
                 <li><a href = "{% url 'tour_list' %}">Туры</a></li>
-                <li id="licart" style="display: none">Корзина</liid>
-                <li id="lilogin" style="display: block"><a href = "{% url 'logon' %}">Войти</a></li>
-                <li id="lilogout" style="display: none; cursor: pointer"><a onclick="tryLogout()"><a href = "adasd">Выйти</a></li>
-                <li id="liregister" style="display: block"><a href = "/register/">Регистрация</a></li>
-                <li id="liprofile" style="display: none"><a href = "adasd">Профиль</a></li>
-                <li id="liregister" style="display: block"><a href = "/add_tour/">Тест</a></li>
+                 {% if user.is_authenticated %}
+                    <li id="lilogout" style="display: block; cursor: pointer"><a href = "{% url 'logout_user' %}">Выйти</a></li>
+                    <li id="liprofile" style="display: block"><a href = "adasd">Профиль</a></li>
+                    {% if request.user|has_group:"touroperator" %}
+                        <li id="liregister" style="display: block"><a href = "/add_tour/">Добавить тур</a></li>
+                    {% else %}
+                        <li id="licart" style="display: none">Корзина</liid>
+                    {% endif %}
+                {% else %}
+                    <li id="lilogin" style="display: block"><a href = "{% url 'logon' %}">Войти</a></li>
+                    <li id="liregister" style="display: block"><a href = "/register/">Регистрация</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

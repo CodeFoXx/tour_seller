@@ -1,11 +1,27 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
+from django.template import RequestContext
 from django.template.context_processors import csrf
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
-    return render_to_response('tour_seller/index.html')
+    return render(request, 'tour_seller/index.html', {})
+
+
+def touroperator_dashboard(request):
+    return render_to_response('tour_seller/touroperator_dashboard.html')
+
+
+def consumer_dashboard(request):
+    return render_to_response('tour_seller/consumer_dashboard.html')
+
+
+def is_touroperator(user):
+    return user.groups.filter(name='touroperator').exists()
 
 
 def logon(request):
@@ -14,14 +30,20 @@ def logon(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        seo_specialist = authenticate(username=username, password=password)
-        if seo_specialist is not None:
-            # если вошел
-           # return render_to_response('base.html')
-            return HttpResponseRedirect('/')
+        auth_user = authenticate(username=username, password=password)
+        if auth_user is not None:
+            login(request, auth_user)
+            if is_touroperator(auth_user):
+                return render(request, 'tour_seller/touroperator_dashboard.html', c)
+            else:
+                return render(request, 'tour_seller/consumer_dashboard.html', c)
         else:
             # если не вошел
-            return render_to_response('tours/tour_list.html')
+            return render(request, 'tour_seller/error_logon.html', c)
     else:
         # если POST запрос не был отправлен
-        return render_to_response('tour_seller/logon.html', c)
+        return render(request, 'tour_seller/logon.html', c)
+
+def logout_user(request):
+    logout(request)
+    return render(request, 'tour_seller/index.html', {})
