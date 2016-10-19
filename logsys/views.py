@@ -27,8 +27,7 @@ def register(request):
     )
 
     if newuser_form.is_valid():
-        user = User.objects.create(username=newuser_form.cleaned_data['username'],password=newuser_form.cleaned_data['password2'],email=newuser_form.cleaned_data['username'])
-        user.is_active = False
+        user = User.objects.create_user(username=newuser_form.cleaned_data['username'],password=newuser_form.cleaned_data['password2'])
         user.save()
         return HttpResponseRedirect('/')
     else:
