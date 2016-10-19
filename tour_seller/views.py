@@ -3,9 +3,6 @@ from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.template.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
@@ -27,7 +24,6 @@ def is_touroperator(user):
 def logon(request):
     c = {}
     c.update(csrf(request))
-    newuser_form=AuthenticationForm
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
