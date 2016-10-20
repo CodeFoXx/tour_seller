@@ -32,4 +32,12 @@ def add_tour(request):
 def touroperator_tour(request):
     current_user = request.user
     tours = Tour.objects.filter(tour_operator=current_user).order_by('price')
-    return render(request, 'tour_seller/touroperator_tour.html', {'tours': tours})
+    return render(request, 'tours/touroperator_tour.html', {'tours': tours})
+
+
+@login_required
+def delete_tour(request, cur_id):
+    del_tour = Tour.objects.filter(id=cur_id).delete()
+    return redirect('touroperator_tour')
+    #return render(request, 'tours/touroperator_tour.html', {'delete_tour': del_tour})
+    #return render(request, 'tour_seller/touroperator_tour.html', {'delete_tour': del_tour})

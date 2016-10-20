@@ -1,36 +1,37 @@
+
 {% extends 'base.html' %}
+
 {% block content %}
 {#     <div class="invdiv">#}
 {#        <h2>Регистрация</h2>#}
 {#    </div>#}
     <div class="elementdiv">
-        <form action="/logon/" method="post" class="form-horizontal">
+        <form action="{% url 'register' %}" method="post" class="form-horizontal">
             {% csrf_token %}
             <div class="form-group">
                 <div class="col-md-12">
-                   Пожалуйста, авторизируйтесь.
+                    Пожалуйста, введите регистрационные данные.
                     <br/><br/>
                 </div>
                 <div class="col-md-12">
-                    Логин (e-mail):<br />
-                   <input id="username"  type="email" name="username" class="reglog" required>
+                    Адрес электронной почты:<br />
+                    {{ form.username }}
                 </div>
                 <div class="col-md-12">
                     Пароль:<br />
-                    <input id="password" type="password" name="password" class="reglog" required>
+                    {{ form.password1 }}
+                </div>
+                <div class="col-md-12">
+                    Повторение пароля:<br />
+                    {{ form.password2 }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10">
-                    <input type="submit" value="Вход" class="btn btn-primary btn-large" />
+                    <input type="submit" value="Зарегистрироваться" class="btn btn-primary btn-large" />
                 </div>
             </div>
         </form>
     </div>
 {% endblock %}
-
-
-
-
-
 

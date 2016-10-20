@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'airlines',
     'places',
     'consumers',
-    'logsys',
+    'account',
 
 ]
 
