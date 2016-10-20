@@ -28,7 +28,8 @@ def add_tour(request):
         return TemplateResponse(request, 'tours/add_tour.html', dict(form=form))
 
 
-def BuyTour(request):
-    args =  {}
-
-#def BookTour(request):
+@login_required
+def touroperator_tour(request):
+    current_user = request.user
+    tours = Tour.objects.filter(tour_operator=current_user).order_by('price')
+    return render(request, 'tour_seller/touroperator_tour.html', {'tours': tours})
