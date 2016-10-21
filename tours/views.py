@@ -37,7 +37,7 @@ def touroperator_tour(request):
 
 @login_required
 def delete_tour(request, cur_id):
-    del_tour = Tour.objects.filter(id=cur_id).delete()
+    tour = Tour.objects.filter(id=cur_id).get()
+    tour.visibility = False
+    tour.save()
     return redirect('touroperator_tour')
-    #return render(request, 'tours/touroperator_tour.html', {'delete_tour': del_tour})
-    #return render(request, 'tour_seller/touroperator_tour.html', {'delete_tour': del_tour})

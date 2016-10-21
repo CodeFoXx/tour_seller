@@ -103,3 +103,4 @@ tour_seller/node_modules/
 
 bower_components/
 node_modules/
+db.sqlite3

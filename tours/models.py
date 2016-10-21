@@ -27,7 +27,8 @@ class Tour(models.Model):
                               upload_to = os.path.join('images', 'tours'), #'/images/tours/',
                               help_text='150x150px',
                               verbose_name='Изображение тура')
-    # booking = models.ForeignKey(Booking)
+    visibility = models.BooleanField(default=True)
+
 
     def __str__(self):
         return '{} ({:%d-%m-%Y} - {:%d-%m-%Y})'.format(
