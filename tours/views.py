@@ -1,3 +1,6 @@
+import uuid
+
+from django.contrib.auth.models import User
 from django.views.generic import ListView
 from django.shortcuts import render, redirect, render_to_response
 from django.template.context_processors import csrf
@@ -19,12 +22,18 @@ def add_tour(request):
     if request.method == 'POST':
         form = AddTourForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
+            new_tour = Tour(name=form.cleaned_data['name'], price=form.cleaned_data['price'],
+                            start_date=form.cleaned_data['start_date'], fin_date=form.cleaned_data['fin_date'],
+                            airline=form.cleaned_data['airline'], tour_operator=form.cleaned_data['tour_operator'],
+                            capacity=form.cleaned_data['capacity'], hotel=form.cleaned_data['hotel'],
+                            departure_city=form.cleaned_data['departure_city'],
+                            image=form.cleaned_data['image'], visibility=True)
+            new_tour.save()
+            return redirect('touroperator_tour')
         else:
             return TemplateResponse(request, 'tours/add_tour.html', dict(form=form))
     else:
-        form = AddTourForm()
+        form = AddTourForm({'tour_operator': request.user})
         return TemplateResponse(request, 'tours/add_tour.html', dict(form=form))
 
 

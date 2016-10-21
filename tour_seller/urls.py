@@ -21,7 +21,6 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^tours/', include('tours.urls')),
     url(r'^places/', include('places.urls')),
     url(r'^consumers/', include('consumers.urls')),
     url(r'^airlines/', include('airlines.urls')),
@@ -31,7 +30,6 @@ urlpatterns = [
     url(r'^consumer_dashboard', views.consumer_dashboard, name='dashboard'),
     url(r'^account/', include('account.urls')),
     url(r'^tours/', include('tours.urls')),
-    #url(r'^delete_tour/(?P<cur_id>\d+)', include('tours.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

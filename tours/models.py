@@ -7,7 +7,8 @@ from django.contrib import admin
 from airlines.models import Airline
 from places.models import Hotel
 from places.models import City
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput, forms
+
 # from consumers.models import Booking
 
 from tour_seller.settings import MEDIA_ROOT
@@ -40,15 +41,11 @@ class Tour(models.Model):
             return self.image.url
 
 
-
 class AddTourForm(ModelForm):
+    tag = models.IntegerField()
+
     class Meta:
         model = Tour
-        fields = '__all__'
-        #exclude = ['title']
-
-
-
-
-
+        # fields = '__all__'
+        exclude = ['visibility']
 
