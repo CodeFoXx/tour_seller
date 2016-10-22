@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^consumer_dashboard', views.consumer_dashboard, name='dashboard'),
     url(r'^account/', include('account.urls')),
     url(r'^tours/', include('tours.urls')),
+
     #url(r'^delete_tour/(?P<cur_id>\d+)', include('tours.urls')),
 ]
 

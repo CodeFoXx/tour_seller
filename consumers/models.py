@@ -1,8 +1,11 @@
+from datetime import datetime, timedelta
+
+from django.contrib.auth.models import User
 from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.auth.models import User, UserManager
+from django.forms import ModelForm
+
 from tours.models import Tour
-from datetime import datetime, timedelta, timezone
 
 allTours = Tour.objects.all()
 
@@ -51,10 +54,13 @@ class Buying(models.Model):
     tour = models.ForeignKey(Tour, null=True)
     final_cost = models.PositiveIntegerField(default=0)
 
+
     def save(self, *args, **kwargs):
         if self.tour:
             self.final_cost = self.tour.price*self.amount_of_people
+            # self.consumer = User.objects.get(user_)
         super(Buying, self).save(*args, **kwargs)
+
 
     def price(self):
         cs = self.amount_of_people * self.tour.price
@@ -63,3 +69,16 @@ class Buying(models.Model):
     def __str__(self):
         return u'{}, ({:%d-%m-%Y}), {} руб, {}, {}'.format(self.status, self.buy_date, self.final_cost, self.consumer,
                                             self.tour.name)
+
+
+class BuyTour(ModelForm):
+    class Meta:
+        model = Buying
+
+        exclude = ['buy_date', 'status', 'consumer']
+
+
+class BookTour(ModelForm):
+    class Meta:
+        model = Booking
+        exclude = ['start_date', 'fin_date', 'status']

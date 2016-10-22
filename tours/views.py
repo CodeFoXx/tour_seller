@@ -8,11 +8,21 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
+from django.template import Context, loader
+from django.http import HttpResponse
 
 
 class TourListView(ListView):
     model = Tour
 
+
+def tour_list_logon(request):
+    tour_list_logon = Tour.objects.all()
+    template = loader.get_template('tours/tour_list_logon.html')
+    context = Context({
+        'tour_list_logon': tour_list_logon,
+    })
+    return HttpResponse(template.render(context))
 
 @login_required
 def add_tour(request):
