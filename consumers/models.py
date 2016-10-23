@@ -31,6 +31,7 @@ class Booking(models.Model):
     consumer = models.ForeignKey(User, null=True)
     tour = models.ForeignKey(Tour, null=True)
     final_cost = models.PositiveIntegerField(default=0)
+    visibility = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if self.tour:
@@ -54,13 +55,13 @@ class Buying(models.Model):
     tour = models.ForeignKey(Tour, null=True)
     final_cost = models.PositiveIntegerField(default=0)
 
+    visibility = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if self.tour:
             self.final_cost = self.tour.price*self.amount_of_people
             # self.consumer = User.objects.get(user_)
         super(Buying, self).save(*args, **kwargs)
-
 
     def price(self):
         cs = self.amount_of_people * self.tour.price
@@ -72,13 +73,19 @@ class Buying(models.Model):
 
 
 class BuyTour(ModelForm):
+    tag = models.IntegerField()
+
     class Meta:
         model = Buying
-
-        exclude = ['buy_date', 'status', 'consumer']
+        #fields='__all__'
+    #exclude = ['visibility', 'final_cost', 'buy_date']
+        #Buying.status = Status.objects.get(name='запрос на бронь')
+        exclude = ['visibility', 'final_cost', 'buy_date', 'status']
 
 
 class BookTour(ModelForm):
+    tag = models.IntegerField()
+
     class Meta:
         model = Booking
-        exclude = ['start_date', 'fin_date', 'status']
+        exclude = ['visibility','start_date', 'fin_date', 'status', 'final_cost']

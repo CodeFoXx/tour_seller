@@ -2,8 +2,17 @@ language: python
 python:
     - "2.7"
     - "3.4"
-before_install:
-    - "pip install -r requirments.txt"
-    - pip install flake8
+#before_install:
+#    - "pip install -r requirments.txt"
+#    - pip install flake8
+#script:
+#    - py.test
+install: "pip install -r requirements.txt"
+before_script:
+  - cp .env.example .env
+  - python manage.py migrate
 script:
-    - py.test
+  - flake8 cmdbox
+  - coverage run manage.py test --settings=cmdbox.tests_settings
+after_success:
+  - coveralls
