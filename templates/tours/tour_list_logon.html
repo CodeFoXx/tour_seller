@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="contentbody">
-        <h1>{% block title %}Список туров{% endblock %}</h1>
+        <h1>{% block title %}Список  туров{% endblock %}</h1>
         {% for tour in tour_list_logon %}
             <div class="objdiv" id = "tour{{ tour.id }}" >
                 <div class="objdiv_header">
@@ -31,6 +31,7 @@
                             <input type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0">
                         </div> <br/>
                         <div class="objdiv_footer">
+                            {% if user.is_authenticated %}
                             <form action="{%url 'book_tour' %}" method="post" class="form-horizontal" enctype="text/plain">
                                 {% csrf_token %}
                                 {{ form }}
@@ -49,6 +50,7 @@
                                     </div>
                                 </div>
                             </form>
+                             {% endif %}
                             {#                        <a href="javascript: var isBooked = confirm('Вы действительно хотите забронировать тур?')" class="btn btn-danger btn-large">Забронировать</a>#}
                             {#                        <a href="javascript: var isBought = confirm('Вы действительно хотите купить тур?')" class="btn btn-danger btn-large">Купить</a>#}
                         </div>
