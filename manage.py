@@ -4,7 +4,6 @@ import sys
 from django.core.management import ManagementUtility
 import importlib
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tour_seller.settings")
-from django.conf import settings
 
 
 if __name__ == "__main__":

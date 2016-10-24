@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
-from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 
@@ -16,6 +15,7 @@ def get_deadline():
 
 class Status(models.Model):
     status = models.CharField(max_length=50)
+
     class Meta:
         verbose_name_plural = 'Statuses'
 
@@ -43,8 +43,9 @@ class Booking(models.Model):
         return cs
 
     def __str__(self):
-        return u'{}, ({:%d-%m-%Y} - {:%d-%m-%Y}), {}, {}'.format(self.status, self.start_date, self.fin_date, self.consumer.name,
-                                            self.tour.name)
+        return u'{}, ({:%d-%m-%Y} - {:%d-%m-%Y}), {}, {}'.format(self.status, self.start_date, self.fin_date,
+                                                                 self.consumer.name,
+                                                                 self.tour.name)
 
 
 class Buying(models.Model):
@@ -59,7 +60,7 @@ class Buying(models.Model):
 
     def save(self, *args, **kwargs):
         if self.tour:
-            self.final_cost = self.tour.price*self.amount_of_people
+            self.final_cost = self.tour.price * self.amount_of_people
             # self.consumer = User.objects.get(user_)
         super(Buying, self).save(*args, **kwargs)
 
@@ -69,7 +70,7 @@ class Buying(models.Model):
 
     def __str__(self):
         return u'{}, ({:%d-%m-%Y}), {} руб, {}, {}'.format(self.status, self.buy_date, self.final_cost, self.consumer,
-                                            self.tour.name)
+                                                           self.tour.name)
 
 
 class BuyTour(ModelForm):
@@ -77,10 +78,10 @@ class BuyTour(ModelForm):
 
     class Meta:
         model = Buying
-        #fields='__all__'
-    #exclude = ['visibility', 'final_cost', 'buy_date']
-        #Buying.status = Status.objects.get(name='запрос на бронь')
         exclude = ['visibility', 'final_cost', 'buy_date', 'status']
+        # fields='__all__'
+        # exclude = ['visibility', 'final_cost', 'buy_date']
+        # Buying.status = Status.objects.get(name='запрос на бронь')
 
 
 class BookTour(ModelForm):
@@ -88,4 +89,4 @@ class BookTour(ModelForm):
 
     class Meta:
         model = Booking
-        exclude = ['visibility','start_date', 'fin_date', 'status', 'final_cost']
+        exclude = ['visibility', 'start_date', 'fin_date', 'status', 'final_cost']

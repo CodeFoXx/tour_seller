@@ -14,6 +14,7 @@ from django.forms import ModelForm, HiddenInput, forms
 from tour_seller.settings import MEDIA_ROOT
 import os
 
+
 class Tour(models.Model):
     name = models.CharField(max_length=50)
     price = models.PositiveIntegerField()
@@ -25,11 +26,10 @@ class Tour(models.Model):
     hotel = models.ForeignKey(Hotel)
     departure_city = models.ForeignKey(City)
     image = models.ImageField(blank=True,
-                              upload_to = os.path.join('images', 'tours'), #'/images/tours/',
+                              upload_to=os.path.join('images', 'tours'),
                               help_text='150x150px',
                               verbose_name='Изображение тура')
     visibility = models.BooleanField(default=True)
-
 
     def __str__(self):
         return '{} ({:%d-%m-%Y} - {:%d-%m-%Y})'.format(
@@ -48,4 +48,3 @@ class AddTourForm(ModelForm):
         model = Tour
         # fields = '__all__'
         exclude = ['visibility']
-

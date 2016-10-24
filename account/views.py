@@ -17,7 +17,7 @@ def register(request):
     newuser_form = UserCreationForm(request.POST)
     newuser_form.fields['username'].widget.attrs.update(
         {
-            'placeholder':'name@example.com'
+            'placeholder': 'name@example.com'
         }
     )
     newuser_form.fields['password1'].widget.attrs.update(

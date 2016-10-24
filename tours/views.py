@@ -2,7 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.views.generic import ListView
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.template.context_processors import csrf
 
 from tours.models import Tour
@@ -22,6 +22,7 @@ class TourListView(ListView):
 class TourListView1(ListView):
     model = Tour
 
+
 @login_required
 def tour_list_logon(request):
     tour_list_logon = Tour.objects.all()
@@ -30,7 +31,6 @@ def tour_list_logon(request):
         'tour_list_logon': tour_list_logon,
     })
     return HttpResponse(template.render(context))
-
 
 
 @login_required
@@ -62,7 +62,8 @@ def touroperator_tour(request):
 
 @login_required
 def delete_tour(request, cur_id):
-    tour = Tour.objects.filter(id=cur_id).get()
+    # tour = Tour.objects.get(id=cur_id)
+    tour = get_object_or_404(Tour, id=cur_id)
     tour.visibility = False
     tour.save()
     return redirect('touroperator_tour')

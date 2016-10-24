@@ -2,10 +2,9 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from tours.views import add_tour, touroperator_tour, tour_list_logon
-from tours.views import TourListView
-from . import views
+from tours.views import tour_list_logon
 from tours.views import delete_tour, add_tour, touroperator_tour, TourListView
+
 
 urlpatterns = [
     url('^details_us$', tour_list_logon, name='tour_list_logon'),
