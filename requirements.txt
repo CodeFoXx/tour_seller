@@ -3,3 +3,5 @@ django-jinja==2.2.1
 Jinja2==2.8
 MarkupSafe==0.23
 coverage==4.2
+flake8==3.0.4
+Pillow==3.4.1
