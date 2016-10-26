@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="jumbotron">
-    <h1>Добро пожаловать в личный кабинет туроператора!</h1>
-    <p class="lead">К Вашим услугам удобное web-приложение "TourSeller" для продажи путевок.</p>
+
+    <div class="elementdiv">
+        <form action="{% url 'touroperator_dashboard' %}"  method="post" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="col-md-12">
+                  <h1 align="center">Персональные данные</h1>
+                    <br/><br/>
+                </div>
+                <div class="col-md-12">
+                   E-mail:<br />
+                    <input id="email" type="email" name="email" class="reglog"  required value= "{{ request.user.email }}">
+                </div>
+                 <div class="col-md-12">
+                    Номер телефона:<br />
+                    <input id="tel" type="tel" name="tel" class="reglog"  required value= "{{ request.user.userprofile.telephone }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Сохранить" class="btn btn-primary btn-large" />
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
