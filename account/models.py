@@ -6,4 +6,3 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
     telephone = models.CharField(max_length=11)
 
-#
