@@ -101,7 +101,7 @@ def add_inf_touroperator(request):
         email = request.POST['email']
         user.userprofile.telephone = telephone
         user.userprofile.save()
-        user.username=email
+        user.username = email
         user.email = email
         user.save()
         return redirect('/account/touroperator_dashboard')
