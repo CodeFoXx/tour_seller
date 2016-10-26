@@ -2,8 +2,8 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from tours.views import tour_list_logon
-from tours.views import delete_tour, add_tour, touroperator_tour, TourListView
+from tours.views import tour_list_logon, delete_tour, add_tour, touroperator_tour, TourListView
+from consumers.views import buy_tour, book_tour
 
 
 urlpatterns = [

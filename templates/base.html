@@ -30,15 +30,16 @@
                 <li><a href = "{% url 'index' %}">Главная</a></li>
                 <li id="lirtourson" style="display: block"><a href = "{% url 'tour_list' %}">Туры</a></li>
                  {% if user.is_authenticated %}
-                     <li id="libuy" style="display: block"><a href = "{% url 'buy_tour' %}">Покупка</a></li>
-                     <li id="libook" style="display: block"><a href = "{% url 'book_tour' %}">Бронирование</a></li>
+{#                     <li id="libuy" style="display: block"><a href = "{% url 'buy_tour' %}">Покупка</a></li>#}
+{#                     <li id="libook" style="display: block"><a href = "{% url 'book_tour' %}">Бронирование</a></li>#}
                      <li id="lilogout" style="display: block; cursor: pointer"><a href = "{% url 'logout_user' %}">Выйти</a></li>
                      <li id="liprofile" style="display: block"><a href = "adasd">Профиль</a></li>
                     {% if request.user|has_group:"touroperator" %}
                         <li id="liregister" style="display: block"><a href = "{% url 'touroperator_tour' %}">Мои туры</a></li>
                         <li id="liregister" style="display: block"><a href = "{% url 'add_tour' %}">Добавить тур</a></li>
+                        <li id="licart" style="display: block"><a href = "{% url 'request_from_consumer' %}">Заявки</a></li>
                     {% else %}
-                        <li id="licart" style="display: none">Корзина</li>
+                        <li id="licart" style="display: block"><a href = "{% url 'cart' %}">Корзина</a></li>
                     {% endif %}
                 {% else %}
                     <li id="lilogin" style="display: block"><a href = "{% url 'logon' %}">Войти</a></li>

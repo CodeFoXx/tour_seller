@@ -47,6 +47,7 @@
 {% block content %}
     <div class="contentbody">
         <h1>{% block title %}Список  туров{% endblock %}</h1>
+
         {% for tour in tour_list %}
             <div class="objdiv" id = "tour{{ tour.id }}" >
                 <div class="objdiv_header">
@@ -73,35 +74,6 @@
                                 Количество человек: <br/>
                                 <input id="amount" type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0">
                             </div> <br/>
-                            <div class="objdiv_footer">
-                            <a href="{% url 'b_tour' cur_id=tour.id amount=1 status=1 consumer=form.consumer.value  %}" class="btn btn-danger btn-large">Купить</a>
-                            <a href="{% url 'bo_tour' cur_id=tour.id amount=1 status=1 consumer=form.consumer.value  %}" class="btn btn-danger btn-large">Забронировать</a>
-{#                                <form action="{%url 'book_tour' %}" method="post" class="form-horizontal" enctype="text/plain">#}
-{#                                    {% csrf_token %}#}
-{#                                    <input type="hidden" name="{{ form.consumer.name }}" value="{{ form.consumer.value }}">#}
-{#                                    <input type="hidden" name="{{ form.tour.id }}" value="{{ tour.id }}">#}
-{#                                    <input type="hidden" name="{{ form.amount_of_people }}" value="{{ amount }}">#}
-{#                                    {{ form }}#}
-{##}
-{#                                    <div class="form-group">#}
-{#                                        <div class="col-md-10">#}
-{#                                            <input type="submit" value="Забронировать тур" class="btn btn-danger btn-large" />#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </form>#}
-{#                                <form action="{%url 'buy_tour' %}" method="post" class="form-horizontal" enctype="text/plain">#}
-{#                                    {% csrf_token %}#}
-{#                                    {{ form }}#}
-{#                                    <div class="form-group">#}
-{#                                        <div class="col-md-10">#}
-{#                                            <input type="submit" value="Добавить тур" class="btn btn-danger btn-large" />#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </form>#}
-
-                                {#                        <a href="javascript: var isBooked = confirm('Вы действительно хотите забронировать тур?')" class="btn btn-danger btn-large">Забронировать</a>#}
-                                {#                        <a href="javascript: var isBought = confirm('Вы действительно хотите купить тур?')" class="btn btn-danger btn-large">Купить</a>#}
-                            </div>
                         {% endif %}
                     </div>
                     <div class="objdiv_body_img">

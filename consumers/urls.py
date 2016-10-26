@@ -1,13 +1,22 @@
 from django.conf.urls import url
 
-from consumers.views import BookingListView
-from consumers.views import ByuingListView
-from consumers.views import StatusListView
-from consumers.views import book_tour, buy_tour, b_tour, bo_tour
+from consumers.views import change_buy_status_cancel
+from consumers.views import change_buy_status_confirm
+from consumers.views import change_book_status_confirm
+from consumers.views import change_book_status_cancel
+from consumers.views import book_tour, buy_tour, cart, request_from_consumer
+
 
 urlpatterns = [
-    url('^book_tour$', book_tour, name='book_tour'),
-    url('^buy_tour$', buy_tour, name='buy_tour'),
-    url(r'^b_tour/(?P<cur_id>\d+)/(?P<amount>\d+)/(?P<status>\d+)/(?P<consumer>\d+)/$', b_tour, name='b_tour'),
-    url(r'^bo_tour/(?P<cur_id>\d+)/(?P<amount>\d+)/(?P<status>\d+)/(?P<consumer>\d+)/$', bo_tour, name='bo_tour'),
+    url(r'^book_tour$', book_tour, name='book_tour'),
+    url(r'^buy_tour$', buy_tour, name='buy_tour'),
+    url('^cart', cart, name='cart'),
+    url('^request_from_consumer', request_from_consumer, name='request_from_consumer'),
+    url(r'^change_book_status_cancel/(?P<cur_id>\d+)/$', change_book_status_cancel, name='change_book_status_cancel'),
+    url(r'^change_book_status_confirm/(?P<cur_id>\d+)/$', change_book_status_confirm, name='change_book_status_confirm'),
+    url(r'^change_buy_status_cancel/(?P<cur_id>\d+)/$', change_buy_status_cancel, name='change_buy_status_cancel'),
+    url(r'^change_buy_status_confirm/(?P<cur_id>\d+)/$', change_buy_status_confirm, name='change_buy_status_confirm'),
+
+    # url(r'^b_tour/(?P<cur_id>\d+)/(?P<amount>\d+)/(?P<status>\d+)/(?P<consumer>\d+)/$', b_tour, name='b_tour'),
+    # url(r'^bo_tour/(?P<cur_id>\d+)/(?P<amount>\d+)/(?P<status>\d+)/(?P<consumer>\d+)/$', bo_tour, name='bo_tour'),
 ]

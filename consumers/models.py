@@ -44,7 +44,7 @@ class Booking(models.Model):
 
     def __str__(self):
         return u'{}, ({:%d-%m-%Y} - {:%d-%m-%Y}), {}, {}'.format(self.status, self.start_date, self.fin_date,
-                                                                 self.consumer.name,
+                                                                 self.consumer,
                                                                  self.tour.name)
 
 
@@ -82,6 +82,12 @@ class BuyTour(ModelForm):
         # fields='__all__'
         # exclude = ['visibility', 'final_cost', 'buy_date']
         # Buying.status = Status.objects.get(name='запрос на бронь')
+
+    def get_cleaned_or_initial(self, fieldname):
+        if hasattr(self, 'cleaned_data'):
+            return self.cleaned_data.get(fieldname)
+        else:
+            return self[fieldname].field.initial
 
 
 class BookTour(ModelForm):
