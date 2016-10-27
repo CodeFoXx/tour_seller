@@ -3,7 +3,8 @@
 {% block content %}
     <div class="contentbody">
         <h1>{% block title %}Список  туров{% endblock %}</h1>
-        {% for tour in tour_list_logon %}
+
+        {% for tour in tours %}
             <div class="objdiv" id = "tour{{ tour.id }}" >
                 <div class="objdiv_header">
                     <div class="objdiv_header_left">{{ tour.name }}</div>
@@ -14,9 +15,7 @@
                     Время отбытия: {{ tour.start_date }} <br/>
                     Время прибытия обратно: {{ tour.fin_date }} <br/>
                 </div>
-                <div class="objdiv_body_img">
-                    <img src="{{ tour.image.url }}" class="img-thumbnail" ></br>
-                </div>
+
 
                 <div class="objdiv_body_info" id="tourinfo{{ tour.id }}">
 
@@ -28,35 +27,19 @@
                         Количество свободных мест: {{ tour.capacity }}<br/>
                         <div class="input-group spinner">
                             Количество человек: <br/>
-                            <input type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0">
+                            <input id="amount" name="amount" type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0"onchange="false">
                         </div> <br/>
-                        <div class="objdiv_footer">
-                            {% if user.is_authenticated %}
-                            <form action="{%url 'book_tour' %}" method="post" class="form-horizontal" enctype="text/plain">
-                                {% csrf_token %}
-                                {{ form }}
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <input type="submit" value="Забронировать тур" class="btn btn-danger btn-large" />
-                                    </div>
-                                </div>
-                            </form>
-                            <form action="{%url 'buy_tour' %}" method="post" class="form-horizontal" enctype="text/plain">
-                                {% csrf_token %}
-                                {{ form }}
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <input type="submit" value="Добавить тур" class="btn btn-danger btn-large" />
-                                    </div>
-                                </div>
-                            </form>
-                             {% endif %}
-                            {#                        <a href="javascript: var isBooked = confirm('Вы действительно хотите забронировать тур?')" class="btn btn-danger btn-large">Забронировать</a>#}
-                            {#                        <a href="javascript: var isBought = confirm('Вы действительно хотите купить тур?')" class="btn btn-danger btn-large">Купить</a>#}
-                        </div>
+                        <a href="{% url 'book_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Забронировать</a>
+                        <a href="{% url 'buy_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Купить</a>
 
                     </div>
+                    <div class="objdiv_body_img">
+                        <img src="{{ tour.image.url }}" class="img-thumbnail" ></br>
+                    </div>
+
                 </div>
+
+
 
                 <div class="objdiv_footer">
                     <div class="objdiv_footer">

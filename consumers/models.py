@@ -5,6 +5,11 @@ from django.db import models
 from django.forms import ModelForm
 
 from tours.models import Tour
+import warnings
+
+warnings.filterwarnings(
+    'ignore', r"DateTimeField .* received a naive datetime",
+    RuntimeWarning, r'django\.db\.models\.fields')
 
 allTours = Tour.objects.all()
 
@@ -82,12 +87,6 @@ class BuyTour(ModelForm):
         # fields='__all__'
         # exclude = ['visibility', 'final_cost', 'buy_date']
         # Buying.status = Status.objects.get(name='запрос на бронь')
-
-    def get_cleaned_or_initial(self, fieldname):
-        if hasattr(self, 'cleaned_data'):
-            return self.cleaned_data.get(fieldname)
-        else:
-            return self[fieldname].field.initial
 
 
 class BookTour(ModelForm):

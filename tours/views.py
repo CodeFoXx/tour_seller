@@ -19,18 +19,14 @@ class TourListView(ListView):
     model = Tour
 
 
-class TourListView1(ListView):
-    model = Tour
-
-
-@login_required
-def tour_list_logon(request):
-    tour_list_logon = Tour.objects.all()
-    template = loader.get_template('tours/tour_list_logon.html')
-    context = Context({
-        'tour_list_logon': tour_list_logon,
-    })
-    return HttpResponse(template.render(context))
+# @login_required
+# def tour_list_logon(request):
+#     tour_list_logon = Tour.objects.all()
+#     template = loader.get_template('tours/tour_list_logon.html')
+#     context = Context({
+#         'tour_list_logon': tour_list_logon,
+#     })
+#     return HttpResponse(template.render(context))
 
 
 @login_required

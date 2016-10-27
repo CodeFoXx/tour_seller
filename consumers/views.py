@@ -1,16 +1,17 @@
 import uuid
+
+from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView
+
 from consumers.models import Booking
 from consumers.models import Buying
 from consumers.models import Status
-from consumers.models import BuyTour
-from consumers.models import BookTour
 from tours.models import Tour
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, render_to_response, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 class BookingListView(ListView):
@@ -26,66 +27,54 @@ class StatusListView(ListView):
 
 
 @login_required
-def buy_tour(request):
-    if request.method == 'POST':
-        form = BuyTour(data=request.POST or None)
-        if form.is_valid():
-            new_buy = Buying(amount_of_people=form.cleaned_data['amount_of_people'],
-                             consumer=form.cleaned_data['consumer'],
-                             # status=form.cleaned_data['status'],
-                             tour=form.cleaned_data['tour'], visibility=True)
-            new_buy.save()
-            return HttpResponseRedirect('/')
-        else:
-            return TemplateResponse(request, 'tours/tour_list.html', dict(form=form))
-    else:
-        form = BuyTour({'consumer': request.user})
-        return TemplateResponse(request, 'tours/tour_list.html', dict(form=form))
+def tour_list_logon(request):
+    tours = Tour.objects.all()
+    return render(request, 'tours/tour_list_logon.html', {'tours': tours})
 
 
 @login_required
-def book_tour(request):
-    if request.method == 'POST':
-        form = BookTour(request.POST)
-        if form.is_valid():
-            new_book = Booking(amount_of_people=form.cleaned_data['amount_of_people'],
-                               consumer=form.cleaned_data['consumer'],
-                               # status=form.cleaned_data['status'],
-                               tour=form.cleaned_data['tour'], visibility=True)
-            new_book.save()
-            return redirect('/')
-        else:
-            return TemplateResponse(request, 'tours/tour_list.html', dict(form=form))
-    else:
-        form = BookTour({'consumer': request.user})
-        return TemplateResponse(request, 'tours/tour_list.html', dict(form=form))
+def book_tour(request, cur_id, amount, price):
+    current_user = request.user
+    book = Booking.objects.create(amount_of_people=amount, consumer=current_user)
+    book.status = Status.objects.get(status='заявлен на бронь')
+    book.tour_id = cur_id
+    book.final_cost = int(amount) * int(price)
+    book.save()
+    return redirect('minus_tour', cur_id)
 
 
-# @login_required
-# def b_tour(request, cur_id, amount, status, consumer):
-#     tour1 = Tour.objects.filter(id=cur_id).get()
-#     status = Status.objects.filter(id=1).get()
-#     buy_t = Buying(tour=tour1.objects.get(id), amount_of_people=amount, status=status,
-#                    consumer=consumer, visibility=True)
-#     buy_t.save()
-#     return HttpResponseRedirect('/')
-#
-#
-# @login_required
-# def bo_tour(request, cur_id, amount, status, consumer):
-#     tour1 = Tour.objects.filter(id=cur_id).get()
-#     status = Status.objects.filter(id=1).get()
-#     book_t = Buying(tour=tour1.objects.get(id), amount_of_people=amount, status=status,
-#                     consumer=consumer, visibility=True)
-#     book_t.save()
-#     return HttpResponseRedirect('/')
+@login_required
+def buy_tour(request, cur_id, amount, price):
+    current_user = request.user
+    buy = Buying.objects.create(amount_of_people=amount, consumer=current_user)
+    buy.status = Status.objects.get(status='заявлен на покупку')
+    buy.tour_id = cur_id
+    buy.final_cost = int(amount) * int(price)
+    buy.save()
+    return redirect('minus_tour', cur_id)
+
+
+@login_required
+def minus_tour(request, cur_id):
+    tour = get_object_or_404(Tour, id=cur_id)
+    tour.capacity -= 1
+    tour.save()
+    return redirect('tour_list_logon')
+
 
 @login_required
 def cart(request):
     current_user = request.user
     bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
-    buyings = Buying.objects.filter(consumer=current_user).order_by('buy_date')
-    return render(request, 'tours/cart.html', dict(bookings=bookings, buyings=buyings))
+    return render(request, 'tours/cart.html', dict(bookings=bookings))
+
+
+@login_required
+def buy_cart(request):
+    current_user = request.user
+    status = Status.objects.get(status='покупка подтверждена')
+    buyings = Buying.objects.filter(consumer=current_user, status=status).order_by('buy_date')
+    return render(request, 'tours/buy_cart.html', dict(buyings=buyings))
 
 
 @login_required
