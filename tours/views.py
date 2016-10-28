@@ -53,10 +53,6 @@ def touroperator_tour(request):
     return render(request, 'tours/touroperator_tour.html', {'tours': tours})
 
 
-#@login_required
-#def touropetator_booking(request):
-
-
 @login_required
 def delete_tour(request, cur_id):
     # tour = Tour.objects.get(id=cur_id)
