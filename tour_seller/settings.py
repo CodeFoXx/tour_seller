@@ -138,7 +138,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'bower_components/bootstrap/dist'),
-    os.path.join(BASE_DIR, 'bower_components/jquery/dist')
+    os.path.join(BASE_DIR, 'bower_components/jquery/dist'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

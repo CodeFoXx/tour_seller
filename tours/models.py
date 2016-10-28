@@ -42,9 +42,12 @@ class Tour(models.Model):
 
 
 class AddTourForm(ModelForm):
-    tag = models.IntegerField()
-
     class Meta:
         model = Tour
-        # fields = '__all__'
         exclude = ['visibility']
+
+
+class ChangeTourForm(ModelForm):
+    class Meta:
+        model = Tour
+        exclude = ['visibility', 'price', 'start_date', 'fin_date', 'airline', 'tour_operator', 'hotel', 'departure_city']
