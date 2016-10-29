@@ -44,17 +44,6 @@ def book_tour(request, cur_id, amount, price):
 
 
 @login_required
-def buy_tour(request, cur_id, amount, price):
-    current_user = request.user
-    buy = Buying.objects.create(amount_of_people=amount, consumer=current_user)
-    buy.status = Status.objects.get(status='заявлен на покупку')
-    buy.tour_id = cur_id
-    buy.final_cost = int(amount) * int(price)
-    buy.save()
-    return redirect('minus_tour', cur_id)
-
-
-@login_required
 def minus_tour(request, cur_id):
     tour = get_object_or_404(Tour, id=cur_id)
     tour.capacity -= 1
@@ -116,10 +105,3 @@ def touroperator_booking(request):
     bookings = Booking.objects.filter(tour__tour_operator=current_user).filter(status=current_status).order_by('start_date')
     return render(request, 'consumers/touroperator_booking.html', {'bookings': bookings})
 
-@login_required
-def request_from_consumer(request):
-    current_user = request.user
-    tours = Tour.objects.get(tour_operator=current_user)
-    bookings = Booking.objects.filter(tour=tours).order_by('start_date')
-    buyings = Buying.objects.filter(tour=tours).order_by('buy_date')
-    return render(request, 'tours/request_from_consumer.html', dict(bookings=bookings, buyings=buyings))

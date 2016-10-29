@@ -30,7 +30,7 @@
                             <input id="amount" name="amount" type="number" class="form-control" value="1" max="{{ tour.capacity }}" min="0"onchange="false">
                         </div> <br/>
                         <a href="{% url 'book_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Забронировать</a>
-                        <a href="{% url 'buy_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Купить</a>
+                        <a href="{% url 'book_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Купить</a>
 
                     </div>
                     <div class="objdiv_body_img">
