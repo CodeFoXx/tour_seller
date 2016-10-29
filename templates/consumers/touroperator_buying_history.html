@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="contentbody">
+        <h1>{% block title %}Cписок купленных туров{% endblock %}</h1>
+        {% for buying in buyings %}
+            {% if buying.visibility == True %}
+                <div class="objdiv" id = "buying{{ buying.id }}" >
+                    <div class="objdiv_header">
+                        <div class="objdiv_header_left">{{ buying.tour.name }}</div>
+                        <div class="objdiv_header_right">{{ buying.tour.price }} руб</div>
+                    </div>
+                    <div class="objdiv_body">
+                        Статус: {{ buying.status }} <br/>
+                        Время покупки: {{ buying.buy_date }} <br/>
+                        Количество человек: {{ buying.amount_of_people }} <br/>
+                        Покупатель: {{ buying.consumer.email }} <br/>
+                        Итоговая стоимость: {{ buying.final_cost }} <br/>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
