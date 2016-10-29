@@ -34,7 +34,8 @@
                         <div class="objdiv_footer_left">&nbsp;</div>
                         <div class="objdiv_footer_right">
                             <a href="javascript: change_display_tour_div('tourinfo{{ tour.id }}')" class="btn btn-danger btn-large">Подробнее</a>
-                            <a href="{% url 'delete_tour' cur_id=tour.id %}" class="btn btn-danger btn-large">Удалить</a>
+                            <a href="{% url 'delete_tour' tour.id %}" class="btn btn-danger btn-large">Удалить</a>
+                            <a href="{% url 'change_tour' tour.id %}" class="btn btn-danger btn-large">Изменить</a>
                         </div>
                     </div>
                 </div>

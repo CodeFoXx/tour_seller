@@ -3,7 +3,6 @@
 {% block content %}
     <div class="contentbody">
         <h1>{% block title %}Список  туров{% endblock %}</h1>
-
         {% for tour in tours %}
             <div class="objdiv" id = "tour{{ tour.id }}" >
                 <div class="objdiv_header">
@@ -15,10 +14,7 @@
                     Время отбытия: {{ tour.start_date }} <br/>
                     Время прибытия обратно: {{ tour.fin_date }} <br/>
                 </div>
-
-
                 <div class="objdiv_body_info" id="tourinfo{{ tour.id }}">
-
                     <div class="objdiv_body_txt">
                         Отель: {{ tour.hotel.name }}, {{ tour.hotel.stars}} звезд<br/>
                         Страна: {{ tour.hotel.city.country }}<br/>
@@ -34,8 +30,7 @@
                         <br/>
                         <br/>
                         <a href="{% url 'book_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Забронировать</a>
-                        <a href="{% url 'buy_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Купить</a>
-
+                        <a href="{% url 'book_tour' cur_id=tour.id amount=1 price=tour.price %}" class="btn btn-danger btn-large">Купить</a>
                     </div>
                     <div class="objdiv_body_img">
                         <img src="{{ tour.image.url }}" class="img-thumbnail" ></br>

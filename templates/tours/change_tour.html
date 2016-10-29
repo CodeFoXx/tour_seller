@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="elementdiv">
+        <form action="{% url 'change_tour' request.session.session_tour_id %}" method="post" class="form-horizontal" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="col-md-12">
+                    Название тура:<br />
+                    {{ form.name }}
+                </div>
+                <div class="col-md-12">
+                    Вместимость (чел):<br />
+                    {{ form.capacity }}
+                </div>
+                <div class="col-md-12">
+                    Изображение:<br />
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class="col-md-10">
+                <input type="submit" value="Изменить тур" class="btn btn-primary btn-large" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

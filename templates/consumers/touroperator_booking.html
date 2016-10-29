@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="contentbody">
+        <h1>{% block title %}Cписок активных броней{% endblock %}</h1>
+        {% for booking in bookings %}
+            {% if booking.visibility == True %}
+                <div class="objdiv" id = "booking{{ booking.id }}" >
+                    <div class="objdiv_header">
+                        <div class="objdiv_header_left">{{ booking.tour.name }}</div>
+                        <div class="objdiv_header_right">{{ booking.tour.price }} руб</div>
+                    </div>
+                    <div class="objdiv_body">
+                        Статус: {{ booking.status }} <br/>
+                        Время бронирования: {{ booking.start_date }} <br/>
+                        Время окончания брони: {{ booking.fin_date }} <br/>
+                        Количество человек: {{ booking.amount_of_people }} <br/>
+                        Покупатель: {{ booking.consumer.email }} <br/>
+                        Итоговая стоимость: {{ booking.final_cost }} <br/>
+                    </div>
+                    <div class="objdiv_footer">
+                        <div class="objdiv_footer_left">&nbsp;</div>
+                        <div class="objdiv_footer_right">
+                            <a href="{% url 'confirm_booking' cur_id=booking.id %}" class="btn btn-danger btn-large">Подтвердить</a>
+                            <a href="{% url 'cancel_booking' cur_id=booking.id %}" class="btn btn-danger btn-large">Отклонить</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
