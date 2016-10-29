@@ -12,6 +12,7 @@ from consumers.models import Buying
 from consumers.models import Status
 from tours.models import Tour
 from django.shortcuts import render, redirect, get_object_or_404
+import datetime
 
 
 class BookingListView(ListView):
@@ -61,41 +62,30 @@ def cart(request):
 @login_required
 def buy_cart(request):
     current_user = request.user
-    status = Status.objects.get(status='покупка подтверждена')
+    status = Status.objects.get(status='куплен')
     buyings = Buying.objects.filter(consumer=current_user, status=status).order_by('buy_date')
     return render(request, 'tours/buy_cart.html', dict(buyings=buyings))
 
 
 @login_required
-def change_book_status_cancel(request, cur_id):
+def cancel_booking(request, cur_id):
     book = get_object_or_404(Booking, id=cur_id)
-    book.status = get_object_or_404(Booking, status='бронь отклонена')
+    book.status = Status.objects.get(status='бронь отклонена')
+    book.tour.capacity += book.amount_of_people
     book.save()
-    return redirect('request_from_consumer')
+    return redirect('touroperator_booking')
 
 
 @login_required
-def change_book_status_confirm(request, cur_id):
-    book = get_object_or_404(Booking, id=cur_id)
-    book.status = get_object_or_404(Booking, status='бронь подтверждена')
-    book.save()
-    return redirect('request_from_consumer')
-
-
-@login_required
-def change_buy_status_cancel(request, cur_id):
-    buy = get_object_or_404(Buying, id=cur_id)
-    buy.status = Status.objects.get(status='покупка отклонена')
-    buy.save()
-    return redirect('request_from_consumer')
-
-
-@login_required
-def change_buy_status_confirm(request, cur_id):
-    buy = get_object_or_404(Buying, id=cur_id)
-    buy.status = Status.objects.get(status='покупка подтверждена')
-    buy.save()
-    return redirect('request_from_consumer')
+def confirm_booking(request, cur_id):
+    cur_booking = get_object_or_404(Booking, id=cur_id)
+    cur_booking.status = Status.objects.get(status='бронь подтверждена')
+    buying_status = Status.objects.get(status='куплен')
+    new_buying = Buying(status=buying_status, buy_date=datetime.datetime.now(), amount_of_people=cur_booking.amount_of_people,
+                        consumer=cur_booking.consumer, tour=cur_booking.tour, final_cost=cur_booking.final_cost)
+    cur_booking.save()
+    new_buying.save()
+    return redirect('touroperator_booking')
 
 
 @login_required

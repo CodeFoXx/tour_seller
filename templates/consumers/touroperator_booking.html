@@ -15,14 +15,14 @@
                         Время бронирования: {{ booking.start_date }} <br/>
                         Время окончания брони: {{ booking.fin_date }} <br/>
                         Количество человек: {{ booking.amount_of_people }} <br/>
-                        Покупатель: {{ booking.consumer.name }} <br/>
+                        Покупатель: {{ booking.consumer.email }} <br/>
                         Итоговая стоимость: {{ booking.final_cost }} <br/>
                     </div>
                     <div class="objdiv_footer">
                         <div class="objdiv_footer_left">&nbsp;</div>
                         <div class="objdiv_footer_right">
-                            <a href="qwe" class="btn btn-danger btn-large">Подтвердить</a>
-                            <a href="asd" class="btn btn-danger btn-large">Отклонить</a>
+                            <a href="{% url 'confirm_booking' cur_id=booking.id %}" class="btn btn-danger btn-large">Подтвердить</a>
+                            <a href="{% url 'cancel_booking' cur_id=booking.id %}" class="btn btn-danger btn-large">Отклонить</a>
                         </div>
                     </div>
                 </div>
