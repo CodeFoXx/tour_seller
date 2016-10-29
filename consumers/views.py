@@ -78,15 +78,6 @@ def buy_cart(request):
 
 
 @login_required
-def request_from_consumer(request):
-    current_user = request.user
-    tours = Tour.objects.get(tour_operator=current_user)
-    bookings = Booking.objects.filter(tour=tours).order_by('start_date')
-    buyings = Buying.objects.filter(tour=tours).order_by('buy_date')
-    return render(request, 'tours/request_from_consumer.html', dict(bookings=bookings, buyings=buyings))
-
-
-@login_required
 def change_book_status_cancel(request, cur_id):
     book = get_object_or_404(Booking, id=cur_id)
     book.status = get_object_or_404(Booking, status='бронь отклонена')
@@ -116,3 +107,19 @@ def change_buy_status_confirm(request, cur_id):
     buy.status = Status.objects.get(status='покупка подтверждена')
     buy.save()
     return redirect('request_from_consumer')
+
+
+@login_required
+def touroperator_booking(request):
+    current_user = request.user
+    current_status = Status.objects.get(status='заявлен на бронь')
+    bookings = Booking.objects.filter(tour__tour_operator=current_user).filter(status=current_status).order_by('start_date')
+    return render(request, 'consumers/touroperator_booking.html', {'bookings': bookings})
+
+@login_required
+def request_from_consumer(request):
+    current_user = request.user
+    tours = Tour.objects.get(tour_operator=current_user)
+    bookings = Booking.objects.filter(tour=tours).order_by('start_date')
+    buyings = Buying.objects.filter(tour=tours).order_by('buy_date')
+    return render(request, 'tours/request_from_consumer.html', dict(bookings=bookings, buyings=buyings))
