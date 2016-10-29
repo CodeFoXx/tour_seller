@@ -88,4 +88,3 @@ def touroperator_booking(request):
     current_status = Status.objects.get(status='заявлен на бронь')
     bookings = Booking.objects.filter(tour__tour_operator=current_user).filter(status=current_status).order_by('start_date')
     return render(request, 'consumers/touroperator_booking.html', {'bookings': bookings})
-
