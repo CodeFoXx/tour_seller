@@ -54,8 +54,13 @@ def touroperator_tour(request):
 
 
 @login_required
+def consumer_tour(request):
+    tours = Tour.objects.all().order_by('price')
+    return render(request, 'tours/consumer_tour.html', {'tours': tours})
+
+
+@login_required
 def delete_tour(request, cur_id):
-    # tour = Tour.objects.get(id=cur_id)
     tour = get_object_or_404(Tour, id=cur_id)
     tour.visibility = False
     tour.save()

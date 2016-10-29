@@ -37,7 +37,7 @@
                         <li id="liprofile" style="display: block"><a href = "{% url 'touroperator_dashboard' %}">Профиль</a></li>
                         <li id="libooking" style="display: block"><a href = "{% url 'touroperator_booking' %}">Активные брони</a></li>
                     {% else %}
-                        <li id="lirtourson" style="display: block"><a href = "{% url 'tour_list_logon' %}">Туры</a></li>
+                            <li id="lirtourson" style="display: block"><a href = "{% url 'consumer_tour' %}">Туры</a></li>
                         <li id="licart" style="display: block"><a href = "{% url 'cart' %}">Мои брони</a></li>
                         <li id="licart" style="display: block"><a href = "{% url 'buy_cart' %}">Мои покупки</a></li>
                         <li id="liprofile" style="display: block"><a href = "{% url 'consumer_dashboard' %}">Профиль</a></li>

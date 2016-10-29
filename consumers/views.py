@@ -28,12 +28,6 @@ class StatusListView(ListView):
 
 
 @login_required
-def tour_list_logon(request):
-    tours = Tour.objects.all()
-    return render(request, 'tours/tour_list_logon.html', {'tours': tours})
-
-
-@login_required
 def book_tour(request, cur_id, amount, price):
     current_user = request.user
     book = Booking.objects.create(amount_of_people=amount, consumer=current_user)
