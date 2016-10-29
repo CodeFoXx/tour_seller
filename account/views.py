@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response, render, redirect
+from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.template.context_processors import csrf
-
+from datetime import datetime, timedelta, time
+from django.utils import timezone
+from consumers.models import Booking
 from account.models import UserProfile
 
 
@@ -54,6 +56,16 @@ def logon(request):
         auth_user = authenticate(username=username, password=password)
         if auth_user is not None:
             login(request, auth_user)
+            tim = (timezone.now() + timedelta(hours=7))
+            current_user = request.user
+            bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
+            for book in bookings:
+                if book.fin_date <= tim:
+                    if book.status == 'заявлен на бронь':
+                        print(book.fin_date)
+                        b = get_object_or_404(Booking, id=book.id)
+                        b.status = get_object_or_404(Booking, status='время бронирования истекло')
+
             if is_touroperator(auth_user):
                 return redirect('/account/touroperator_dashboard')
             else:

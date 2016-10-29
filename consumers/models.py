@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -15,7 +15,7 @@ allTours = Tour.objects.all()
 
 
 def get_deadline():
-    return datetime.utcnow() + timedelta(days=1)
+    return datetime.now() + timedelta(minutes=4)
 
 
 class Status(models.Model):

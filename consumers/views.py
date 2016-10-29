@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
+from datetime import datetime, timedelta, time
+from django.utils import timezone
 
 from consumers.models import Booking
 from consumers.models import Buying
@@ -62,11 +64,26 @@ def minus_tour(request, cur_id):
     return redirect('tour_list_logon')
 
 
+# @login_required
+# def delete_book(request, cur_id):
+#     book = get_object_or_404(Booking, id=cur_id)
+#     if book.status ==
+#     tour.capacity -= 1
+#     tour.save()
+#     return redirect('tour_list_logon')
+
 @login_required
 def cart(request):
+    tim = (timezone.now() + timedelta(hours=7))
     current_user = request.user
     bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
-    return render(request, 'tours/cart.html', dict(bookings=bookings))
+    for book in bookings:
+        print(book.fin_date)
+        # if book.fin_date <= tim:
+        #     b = get_object_or_404(Booking, id=book.id)
+        #     b = Booking.objects.get(id=book.id)
+        #     b.status = get_object_or_404(Booking, status='время бронирования истекло')
+    return render(request, 'consumers/cart.html', dict(bookings=bookings))
 
 
 @login_required
@@ -74,7 +91,7 @@ def buy_cart(request):
     current_user = request.user
     status = Status.objects.get(status='покупка подтверждена')
     buyings = Buying.objects.filter(consumer=current_user, status=status).order_by('buy_date')
-    return render(request, 'tours/buy_cart.html', dict(buyings=buyings))
+    return render(request, 'consumers/buy_cart.html', dict(buyings=buyings))
 
 
 @login_required

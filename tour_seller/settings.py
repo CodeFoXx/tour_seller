@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'places',
     'consumers',
     'account',
-
+    'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +58,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRON_CLASSES = [
+    "tour_seller.cron.MyCronJob",
+    # ...
 ]
 
 ROOT_URLCONF = 'tour_seller.urls'
