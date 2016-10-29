@@ -65,7 +65,6 @@ def logon(request):
                         print(book.fin_date)
                         b = get_object_or_404(Booking, id=book.id)
                         b.status = get_object_or_404(Booking, status='время бронирования истекло')
-
             if is_touroperator(auth_user):
                 return redirect('/account/touroperator_dashboard')
             else:
