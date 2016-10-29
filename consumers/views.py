@@ -14,7 +14,6 @@ from consumers.models import Buying
 from consumers.models import Status
 from tours.models import Tour
 from django.shortcuts import render, redirect, get_object_or_404
-import datetime
 
 
 class BookingListView(ListView):
@@ -44,17 +43,18 @@ def book_tour(request, cur_id, amount, price):
 def minus_tour(request, cur_id):
     tour = get_object_or_404(Tour, id=cur_id)
     tour.capacity -= 1
+    if tour.capacity == 0:
+        tour.visibility = False
     tour.save()
     return redirect('consumer_tour')
 
 
-# @login_required
-# def delete_book(request, cur_id):
-#     book = get_object_or_404(Booking, id=cur_id)
-#     if book.status ==
-#     tour.capacity -= 1
-#     tour.save()
-#     return redirect('tour_list_logon')
+@login_required
+def delete_book(request, cur_id):
+    book = get_object_or_404(Booking, id=cur_id)
+    book.delete()
+    return redirect('cart')
+
 
 @login_required
 def cart(request):
@@ -62,17 +62,20 @@ def cart(request):
     current_user = request.user
     bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
     for book in bookings:
-        print(book.fin_date)
-        tim = (timezone.now() + timedelta(hours=7))
+        tim = (timezone.now())
+        # + timedelta(hours=7)
         current_user = request.user
         bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
-        for book in bookings:
-            if book.fin_date <= tim:
-                if book.status == 'заявлен на бронь':
-                    print(book.fin_date)
-                    b = get_object_or_404(Booking, id=book.id)
-                    b.status = get_object_or_404(Booking, status='время бронирования истекло')
-
+        if book.fin_date <= tim:
+            print(book.tour_id)
+            if book.status.status == 'заявлен на бронь':
+                b = get_object_or_404(Booking, id=book.id)
+                b.status = get_object_or_404(Status, status='время бронирования истекло')
+                b.save()
+                tour = get_object_or_404(Tour, id=book.tour_id)
+                tour.capacity += 1
+                tour.visibility = True
+                tour.save()
     return render(request, 'consumers/cart.html', dict(bookings=bookings))
 
 

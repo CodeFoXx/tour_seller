@@ -26,7 +26,7 @@
                             страна: {{ booking.tour.hotel.city.country }}<br/>
                             авиакомпания: {{ booking.tour.airline }}<br/>
                             туроператор: {{ booking.tour.tour_operator.username }}<br/>
-                            количество свободных мест: {{ booking.tour.capacity }}<br/>
+                            количество свободных туров: {{ booking.tour.capacity }}<br/>
                         </div>
                         <div class="objdiv_body_img">
 
@@ -37,6 +37,7 @@
                         <div class="objdiv_footer_left">&nbsp;</div>
                         <div class="objdiv_footer_right">
                             <a href="javascript: change_display_tour_div('tourinfo{{ booking.id }}')" class="btn btn-danger btn-large">Подробнее</a>
+                            <a href="{% url 'delete_book' cur_id=booking.id %}" class="btn btn-danger btn-large">Удалить бронь</a>
                         </div>
                     </div>
                 </div>

@@ -55,7 +55,7 @@ def touroperator_tour(request):
 
 @login_required
 def consumer_tour(request):
-    tours = Tour.objects.all().order_by('price')
+    tours = Tour.objects.all().order_by('price').filter(visibility=True)
     return render(request, 'tours/consumer_tour.html', {'tours': tours})
 
 
