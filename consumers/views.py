@@ -111,3 +111,12 @@ def touroperator_booking(request):
     current_status = Status.objects.get(status='заявлен на бронь')
     bookings = Booking.objects.filter(tour__tour_operator=current_user).filter(status=current_status).order_by('start_date')
     return render(request, 'consumers/touroperator_booking.html', {'bookings': bookings})
+
+
+@login_required
+def touroperator_buying_history(request):
+    current_user = request.user
+    current_status = Status.objects.get(status='куплен')
+    buyings = Buying.objects.filter(tour__tour_operator=current_user).filter(status=current_status).order_by(
+        'buy_date')
+    return render(request, 'consumers/touroperator_buying_history.html', {'buyings': buyings})
