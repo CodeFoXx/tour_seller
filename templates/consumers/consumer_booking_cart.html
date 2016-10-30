@@ -33,7 +33,7 @@
                                 <i class="material-icons">airplanemode_active</i> Авиакомпания "{{ booking.tour.airline }}"
                             </div>
                             <div class="tourinforow">
-                                {% if tour.tour_operator.first_name == None %}
+                                {% if booking.tour.tour_operator.first_name == None %}
                                     <i class="material-icons">supervisor_account</i> Туроператор: {{ booking.tour.tour_operator }}
                                 {% else %}
                                     <i class="material-icons">supervisor_account</i> Туроператор: {{ booking.tour.tour_operator.first_name }}
