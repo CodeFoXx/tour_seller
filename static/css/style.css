@@ -118,7 +118,7 @@ div.elementdiv_white {
     align-content: center;
 }
 div.contentbody {
-    width: 100%;
+    width: 80%;
     align-content: left;
     padding-left: 40px;
 }
@@ -236,7 +236,7 @@ div.objdiv_footer_right {
 
 .demo-card-event.mdl-card {
   width: 800px;
-  background: #3E4EB8;
+  background: #7484C6;
 }
 
 .demo-card-event > .mdl-card__actions {
