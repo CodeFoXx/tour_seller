@@ -144,6 +144,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'bower_components/bootstrap/dist'),
     os.path.join(BASE_DIR, 'bower_components/jquery/dist'),
+    os.path.join(BASE_DIR, 'bower_components/material-design-lite'),
+    os.path.join(BASE_DIR, 'bower_components/material-design-icons/iconfont'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

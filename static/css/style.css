@@ -1,6 +1,18 @@
 body {
+    /*
     padding-top: 50px;
     padding-bottom: 20px;
+    */
+}
+
+a.tourseller_nav_link {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
 }
 
 .btn {

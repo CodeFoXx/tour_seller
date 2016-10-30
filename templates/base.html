@@ -6,13 +6,16 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'material.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'material-icons.css' %}"/>
     <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+{#    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>#}
     <script type="text/javascript" src="{% static 'js/view-scripts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'material.js' %}"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
+{% comment %}<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -51,6 +54,115 @@
             </ul>
         </div>
     </div>
+</div>{% endcomment %}
+<!-- Uses a transparent header that draws on top of the layout's background -->
+{% comment %}<style>
+.demo-layout-transparent {
+  background: url({% static 'img/tour_seller_layout.png' %}) center;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+</style>{% endcomment %}
+
+<div class="snippet-demo">
+          <div class="snippet-demo-container demo-layout demo-layout__transparent">
+            <style>
+.demo-layout.demo-layout__transparent {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+  position: relative;
+  height: 300px;
+}
+</style>
+
+<!-- Uses a transparent header that draws on top of the layout's background -->
+<style>
+.demo-layout-transparent {
+  background: url({% static 'img/tour_seller_layout.png' %}) center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+</style>
+
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+                <span class="mdl-layout-title">Tour Seller</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation">
+                    <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'index' %}'">
+                        <a class="tourseller_nav_link" href="{% url 'index' %}">Главная</a>
+                    </button>
+                    {% if user.is_authenticated %}
+                        {% if request.user|has_group:"touroperator" %}
+                            <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'tour_list' %}'">
+                                <a class="tourseller_nav_link" href="{% url 'tour_list' %}">Список туров</a>
+                            </button>
+                            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button">
+                                <a class="tourseller_nav_link" href="#">Мои туры</a>
+                            </button>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'touroperator_tour' %}">Список моих туров</a></li>
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'add_tour' %}">Добавить тур</a></li>
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'touroperator_booking' %}">Активные брони</a></li>
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'touroperator_buying_history' %}">История покупок</a></li>
+                            </ul>
+                        {% else %}
+                            <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_tour' %}'">
+                                <a class="tourseller_nav_link" href="{% url 'consumer_tour' %}">Туры</a>
+                            </button>
+                            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button">
+                                <a class="tourseller_nav_link" href="#">Корзина</a>
+                            </button>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'consumer_booking_cart' %}">Мои брони</a></li>
+                                <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'consumer_buying_cart' %}">Мои покупки</a></li>
+                            </ul>
+                        {% endif %}
+                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_dashboard' %}'">
+                            <a class="tourseller_nav_link" href="{% url 'consumer_dashboard' %}">Профиль</a>
+                        </button>
+                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'logout_user' %}'">
+                            <a class="tourseller_nav_link" href="{% url 'logout_user' %}">Выйти</a>
+                        </button>
+                    {% else %}
+                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'tour_list' %}'">
+                            <a class="tourseller_nav_link" href="{% url 'tour_list' %}">Туры</a>
+                        </button>
+                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'logon' %}'">
+                            <a class="tourseller_nav_link" href="{% url 'logon' %}">Войти</a>
+                        </button>
+                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'register' %}'">
+                            <a class="tourseller_nav_link" href="{% url 'register' %}">Регистрация</a>
+                        </button>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Tour Seller</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{% url 'index' %}">Главная</a>
+            <a class="mdl-navigation__link" href="{% url 'tour_list' %}">Список туров</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+      </main>
+    </div>
+</div>
 </div>
 {% block content %}
 {% endblock %}
