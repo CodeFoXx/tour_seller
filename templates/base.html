@@ -39,8 +39,8 @@
                         <li id="libooking" style="display: block"><a href = "{% url 'touroperator_buying_history' %}">История покупок</a></li>
                     {% else %}
                             <li id="lirtourson" style="display: block"><a href = "{% url 'consumer_tour' %}">Туры</a></li>
-                        <li id="licart" style="display: block"><a href = "{% url 'cart' %}">Мои брони</a></li>
-                        <li id="licart" style="display: block"><a href = "{% url 'buy_cart' %}">Мои покупки</a></li>
+                        <li id="licart" style="display: block"><a href = "{% url 'consumer_booking_cart' %}">Мои брони</a></li>
+                        <li id="licart" style="display: block"><a href = "{% url 'consumer_buying_cart' %}">Мои покупки</a></li>
                         <li id="liprofile" style="display: block"><a href = "{% url 'consumer_dashboard' %}">Профиль</a></li>
                     {% endif %}
                 {% else %}

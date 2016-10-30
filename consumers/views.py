@@ -50,14 +50,15 @@ def minus_tour(request, cur_id):
 
 
 @login_required
-def delete_book(request, cur_id):
+def delete_booking(request, cur_id):
     book = get_object_or_404(Booking, id=cur_id)
-    book.delete()
-    return redirect('cart')
+    if book.status.status == 'заявлен на бронь':
+        book.delete()
+    return redirect('consumer_booking_cart')
 
 
 @login_required
-def cart(request):
+def consumer_booking_cart(request):
     tim = (timezone.now() + timedelta(hours=7))
     current_user = request.user
     bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
@@ -76,15 +77,15 @@ def cart(request):
                 tour.capacity += 1
                 tour.visibility = True
                 tour.save()
-    return render(request, 'consumers/cart.html', dict(bookings=bookings))
+    return render(request, 'consumers/consumer_booking_cart.html', dict(bookings=bookings))
 
 
 @login_required
-def buy_cart(request):
+def consumer_buying_cart(request):
     current_user = request.user
     status = Status.objects.get(status='куплен')
     buyings = Buying.objects.filter(consumer=current_user, status=status).order_by('buy_date')
-    return render(request, 'consumers/buy_cart.html', dict(buyings=buyings))
+    return render(request, 'consumers/consumer_buying_cart.html', dict(buyings=buyings))
 
 
 @login_required
