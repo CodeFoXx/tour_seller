@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, time
 from django.utils import timezone
 from consumers.models import Booking, Status
 from account.models import UserProfile
+from django.contrib import messages
 
 
 def is_touroperator(user):
@@ -74,10 +75,9 @@ def logon(request):
             else:
                 return redirect('/account/consumer_dashboard')
         else:
-            # если не вошел
-            return render(request, 'account/error_logon.html', c)
+            messages.error(request, 'Invalid login or password.')
+            return render(request, 'account/logon.html', c)
     else:
-        # если POST запрос не был отправлен
         return render(request, 'account/logon.html', c)
 
 
