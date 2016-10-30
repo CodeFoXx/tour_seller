@@ -51,6 +51,9 @@
                                                 <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'touroperator_booking' %}">Активные брони</a></li>
                                                 <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'touroperator_buying_history' %}">История покупок</a></li>
                                             </ul>
+                                            <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_dashboard' %}'">
+                                                <a class="tourseller_nav_link" href="{% url 'touroperator_dashboard' %}">Профиль</a>
+                                            </button>
                                         {% else %}
                                             <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_tour' %}'">
                                                 <a class="tourseller_nav_link" href="{% url 'consumer_tour' %}">Туры</a>
@@ -62,10 +65,10 @@
                                                 <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'consumer_booking_cart' %}">Мои брони</a></li>
                                                 <li class="mdl-menu__item"><a class="mdl-navigation__link" style="color: #000000; line-height: 40px" href="{% url 'consumer_buying_cart' %}">Мои покупки</a></li>
                                             </ul>
+                                            <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_dashboard' %}'">
+                                                <a class="tourseller_nav_link" href="{% url 'consumer_dashboard' %}">Профиль</a>
+                                            </button>
                                         {% endif %}
-                                        <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'consumer_dashboard' %}'">
-                                            <a class="tourseller_nav_link" href="{% url 'consumer_dashboard' %}">Профиль</a>
-                                        </button>
                                         <button class="mdl-button mdl-js-button" onclick="window.location.href='{% url 'logout_user' %}'">
                                             <a class="tourseller_nav_link" href="{% url 'logout_user' %}">Выйти</a>
                                         </button>
