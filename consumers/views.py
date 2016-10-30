@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
-from datetime import datetime, timedelta, time
+from datetime import timedelta
 from django.utils import timezone
 
 from consumers.models import Booking

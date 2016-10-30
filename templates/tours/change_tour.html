@@ -1,27 +1,33 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    <div class="elementdiv">
+    <div class="contentbody">
+        <h4>Изменения параметров тура</h4>
         <form action="{% url 'change_tour' request.session.session_tour_id %}" method="post" class="form-horizontal" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-group">
-                <div class="col-md-12">
-                    Название тура:<br />
-                    {{ form.name }}
+            <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand" style="flex-direction: column">
+                    <div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="name"  type="text" name="name" class="mdl-textfield__input" required>
+                            <label class="mdl-textfield__label" for="name">Название тура</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="capacity"  type="text" name="capacity" class="mdl-textfield__input" required>
+                            <label class="mdl-textfield__label" for="capacity">Вместимость (чел):</label>
+                        </div>
+                    </div>
+                    <div>
+                        Изображение:<br />
+                        {{ form.image }}
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    Вместимость (чел):<br />
-                    {{ form.capacity }}
+                <div class="mdl-card__actions mdl-card--border">
+                    <input type="submit" value="Изменить тур" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" />
+                    <div class="mdl-layout-spacer"></div>
                 </div>
-                <div class="col-md-12">
-                    Изображение:<br />
-                    {{ form.image }}
-                </div>
-            </div>
-            <div class="col-md-10">
-                <input type="submit" value="Изменить тур" class="btn btn-primary btn-large" />
             </div>
         </form>
+        <br/>
     </div>
 {% endblock %}

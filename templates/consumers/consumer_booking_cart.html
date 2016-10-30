@@ -34,9 +34,9 @@
                             </div>
                             <div class="tourinforow">
                                 {% if booking.tour.tour_operator.first_name == None %}
-                                    <i class="material-icons">supervisor_account</i> Туроператор: {{ booking.tour.tour_operator }}
+                                    <i class="material-icons">explore</i> Туроператор: {{ booking.tour.tour_operator }}
                                 {% else %}
-                                    <i class="material-icons">supervisor_account</i> Туроператор: {{ booking.tour.tour_operator.first_name }}
+                                    <i class="material-icons">explore</i> Туроператор: {{ booking.tour.tour_operator.first_name }}
                                 {% endif %}
                             </div>
                         </div>
