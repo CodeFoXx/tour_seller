@@ -14,6 +14,7 @@ from consumers.models import Buying
 from consumers.models import Status
 from tours.models import Tour
 from django.shortcuts import render, redirect, get_object_or_404
+import datetime
 
 
 class BookingListView(ListView):
@@ -52,7 +53,8 @@ def minus_tour(request, cur_id):
 @login_required
 def delete_booking(request, cur_id):
     book = get_object_or_404(Booking, id=cur_id)
-    if book.status.status == 'заявлен на бронь':
+    if book.status.status == 'заявлен на бронь' or 'время бронирования истекло':
+        book.tour.capacity += book.amount_of_people
         book.delete()
     return redirect('consumer_booking_cart')
 
@@ -71,7 +73,8 @@ def consumer_booking_cart(request):
             print(book.tour_id)
             if book.status.status == 'заявлен на бронь':
                 b = get_object_or_404(Booking, id=book.id)
-                b.status = get_object_or_404(Status, status='время бронирования истекло')
+                status = Status.objects.get(status='время бронирования истекло')
+                b.status = status
                 b.save()
                 tour = get_object_or_404(Tour, id=book.tour_id)
                 tour.capacity += 1

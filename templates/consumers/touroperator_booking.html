@@ -17,27 +17,31 @@
                             <i class="material-icons">done</i> Статус: {{ booking.status }}
                         </div>
                         <div class="tourinforow">
-                            <i class="material-icons">alarm_on</i> Время бронирования: {{ booking.start_date }}
+                            <i class="material-icons">done</i> Время бронирования: {{ booking.start_date }}
                         </div>
                         <div class="tourinforow">
-                            <i class="material-icons">alarm_off</i> Время окончания брони: {{booking.fin_date }}
+                            <i class="material-icons">done</i> Время окончания брони: {{booking.fin_date }}
                         </div>
                         <div class="tourinforow">
                             <i class="material-icons">warning</i> Количество человек: {{ booking.amount_of_people }}
                         </div>
                         <div class="tourinforow">
                             {% if booking.consumer.first_name == None %}
-                               <i class="material-icons">supervisor_account</i> Покупатель: {{ booking.consumer.email }}
+                                <i class="material-icons">supervisor_account</i> Покупатель: {{ booking.consumer.email }}
                             {% else %}
                                 <i class="material-icons">supervisor_account</i> Покупатель: {{ booking.consumer.first_name }} {{ buying.consumer.last_name }}
                             {% endif %}
                         </div>
                     </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a href="{% url 'confirm_booking' cur_id=booking.id %}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Подтвердить</a>
+                        <a href="{% url 'cancel_booking' cur_id=booking.id %}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Отклонить</a>
+                        <div class="mdl-layout-spacer"></div>
+                    </div>
                  </div>
             {% endif %}
             <br/>
         {% endfor %}
-        <br/>
     </div>
 {% endblock %}
 
