@@ -236,7 +236,6 @@ div.objdiv_footer_right {
 
 .demo-card-event.mdl-card {
   width: 800px;
-  height: 200px;
   background: #3E4EB8;
 }
 
@@ -291,3 +290,12 @@ div.objdiv_footer_right {
                     height: 300px;
                 }
 
+div.tourinfodiv {
+    display: none;
+}
+
+div.tourinforow {
+
+}
+
+.tourinforow > i{ vertical-align: middle !important; }
