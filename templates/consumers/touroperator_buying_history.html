@@ -14,16 +14,16 @@
                             <i class="material-icons">account_balance_wallet</i> Стоимость: {{  buying.tour.price }} руб.
                         </div>
                         <div class="tourinforow">
-                            <i class="material-icons">event</i> Статус: {{ buying.status }}
+                            <i class="material-icons">done</i> Статус: {{ buying.status }}
                         </div>
                         <div class="tourinforow">
-                            <i class="material-icons">flight_takeoff</i> Количество человек: {{ buying.amount_of_people }}
+                            <i class="material-icons">warning</i> Количество человек: {{ buying.amount_of_people }}
                         </div>
                         <div class="tourinforow">
                             {% if buying.consumer.first_name == None %}
-                                <i class="material-icons">explore</i> Туроператор: {{ buying.consumer.email }}
+                               <i class="material-icons">supervisor_account</i> Покупатель: {{ buying.consumer.email }}
                             {% else %}
-                                <i class="material-icons">explore</i> Туроператор: {{ buying.consumer.first_name }}
+                                <i class="material-icons">supervisor_account</i> Покупатель: {{ buying.consumer.first_name }} {{ buying.consumer.last_name }}
                             {% endif %}
                         </div>
                     </div>
