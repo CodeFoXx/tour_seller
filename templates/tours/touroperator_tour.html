@@ -21,18 +21,23 @@
                             <i class="material-icons">flight_land</i> Прибытие в г. {{ tour.hotel.city.name }}, {{ tour.hotel.city.country }}
                         </div>
                         <div class="tourinfodiv" id="tourinfo{{ tour.id }}">
-                            <div class="tourinforow">
-                                <i class="material-icons">hotel</i> Отель "{{ tour.hotel.name }}", {{ tour.hotel.stars}} звезд
+                            <div class="tourinfoleft">
+                                <div class="tourinforow">
+                                    <i class="material-icons">hotel</i> Отель "{{ tour.hotel.name }}", {{ tour.hotel.stars}} звезд
+                                </div>
+                                <div class="tourinforow">
+                                    <i class="material-icons">airplanemode_active</i> Авиакомпания "{{ tour.airline }}"
+                                </div>
+                                <div class="tourinforow">
+                                    {% if tour.tour_operator.first_name == None %}
+                                        <i class="material-icons">explore</i> Туроператор: {{ tour.tour_operator }}
+                                    {% else %}
+                                        <i class="material-icons">explore</i> Туроператор: {{ tour.tour_operator.first_name }}
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="tourinforow">
-                                <i class="material-icons">airplanemode_active</i> Авиакомпания "{{ tour.airline }}"
-                            </div>
-                            <div class="tourinforow">
-                                {% if tour.tour_operator.first_name == None %}
-                                    <i class="material-icons">explore</i> Туроператор: {{ tour.tour_operator }}
-                                {% else %}
-                                    <i class="material-icons">explore</i> Туроператор: {{ tour.tour_operator.first_name }}
-                                {% endif %}
+                            <div class="tourinforight">
+                                <img src="{{ tour.image.url }}" class="img-thumbnail" ><br/>
                             </div>
                             <div class="tourinforow">
                                 <i class="material-icons">warning</i> Количество свободных туров: {{ tour.capacity }}
