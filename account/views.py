@@ -113,7 +113,10 @@ def add_inf_touroperator(request):
     c.update(csrf(request))
     if request.method == "POST":
         telephone = request.POST['tel']
-        email = request.POST['email']
+        if 'email' in request.POST:
+            email = request.POST['email']
+        else:
+            email = False
         user.userprofile.telephone = telephone
         user.userprofile.save()
         user.username = email
