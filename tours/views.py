@@ -74,11 +74,8 @@ def change_tour(request, cur_id):
         if form.is_valid():
             tour = get_object_or_404(Tour, id=cur_id)
             tour.name = form.cleaned_data['name']
-            if form.cleaned_data['image'] is not None:
+            if form.cleaned_data['image']:
                 tour.image = form.cleaned_data['image']
-            else:
-                t_img = static('noimage.png')
-                tour.image = t_img
             tour.capacity = form.cleaned_data['capacity']
             tour.save()
         return redirect('touroperator_tour')
