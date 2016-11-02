@@ -8,3 +8,8 @@ function change_display_tour_div(div_name) {
     else
         current_object.style.display = 'block';
 }
+
+function clicked(e)
+{
+    if(!confirm('Вы уверены, что хотите удалить выбранный тур?'))e.preventDefault();
+}
