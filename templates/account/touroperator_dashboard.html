@@ -1,26 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div class="elementdiv">
-        <form action="{% url 'touroperator_dashboard' %}"  method="post" class="form-horizontal">
+    <div class="contentbody">
+        <h4>Персональные данные туроператора</h4>
+        <form action="{% url 'touroperator_dashboard' %}" method="post">
             {% csrf_token %}
-            <div class="form-group">
-                <div class="col-md-12">
-                  <h1 align="center">Персональные данные</h1>
-                    <br/><br/>
+            <div class="demo-card-event mdl-card mdl-shadow--2dp" id = "tour{{ tour.id }}">
+                <div class="mdl-card__title mdl-card--expand" style="flex-direction: column">
+                    <div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="first_name"  type="text" name="first_name" class="mdl-textfield__input" required value= "{{request.user.first_name }}">
+                            <label class="mdl-textfield__label" for="first_name">Название</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="email" type="text" name="email" class="mdl-textfield__input"  required value= "{{ request.user.email }}">
+                            <label class="mdl-textfield__label" for="email">Электронная почта</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input id="tel" type="text" name="tel" class="mdl-textfield__input" required value= "{{ request.user.userprofile.telephone }}">
+                            <label class="mdl-textfield__label" for="tel">Номер телефона</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                   E-mail:<br />
-                    <input id="email" type="email" name="email" class="reglog"  required value= "{{ request.user.email }}">
-                </div>
-                 <div class="col-md-12">
-                    Номер телефона:<br />
-                    <input id="tel" type="tel" name="tel" class="reglog"  required value= "{{ request.user.userprofile.telephone }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="submit" value="Сохранить" class="btn btn-primary btn-large" />
+                <div class="mdl-card__actions mdl-card--border">
+                    <input type="submit" value="Сохранить" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" />
+                    <div class="mdl-layout-spacer"></div>
                 </div>
             </div>
         </form>

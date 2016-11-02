@@ -15,7 +15,7 @@ allTours = Tour.objects.all()
 
 
 def get_deadline():
-    return datetime.now() + timedelta(minutes=1)
+    return datetime.now() + timedelta(minutes=10)
 
 
 class Status(models.Model):

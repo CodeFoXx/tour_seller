@@ -1,6 +1,18 @@
 body {
+    /*
     padding-top: 50px;
     padding-bottom: 20px;
+    */
+}
+
+a.tourseller_nav_link {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
 }
 
 .btn {
@@ -106,7 +118,7 @@ div.elementdiv_white {
     align-content: center;
 }
 div.contentbody {
-    width: 100%;
+    width: 80%;
     align-content: left;
     padding-left: 40px;
 }
@@ -216,11 +228,74 @@ div.objdiv_footer_right {
     padding: 0;
   }
 
-
-
-
 .my-col {
     display: inline-block;
 }
 
+/* mdl-styles */
 
+.demo-card-event.mdl-card {
+  width: 800px;
+  background: #7484C6;
+}
+
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+
+.demo-card-event > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+
+.demo-layout.demo-layout__transparent {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+  position: relative;
+  height: 300px;
+}
+
+.demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+      color: white;
+    }
+
+.demo-layout.demo-layout__transparent {
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                                0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                    width: 100%;
+                    position: relative;
+                    height: 300px;
+                }
+
+div.tourinfodiv {
+    display: none;
+}
+
+div.tourinforow {
+
+}
+
+.tourinforow > i{ vertical-align: middle !important; }

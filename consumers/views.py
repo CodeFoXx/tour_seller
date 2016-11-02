@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
-from datetime import datetime, timedelta, time
+from datetime import timedelta
 from django.utils import timezone
 
 from consumers.models import Booking
@@ -14,6 +14,7 @@ from consumers.models import Buying
 from consumers.models import Status
 from tours.models import Tour
 from django.shortcuts import render, redirect, get_object_or_404
+import datetime
 
 
 class BookingListView(ListView):
@@ -50,14 +51,16 @@ def minus_tour(request, cur_id):
 
 
 @login_required
-def delete_book(request, cur_id):
+def delete_booking(request, cur_id):
     book = get_object_or_404(Booking, id=cur_id)
-    book.delete()
-    return redirect('cart')
+    if book.status.status == 'заявлен на бронь' or 'время бронирования истекло':
+        book.tour.capacity += book.amount_of_people
+        book.delete()
+    return redirect('consumer_booking_cart')
 
 
 @login_required
-def cart(request):
+def consumer_booking_cart(request):
     tim = (timezone.now() + timedelta(hours=7))
     current_user = request.user
     bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
@@ -70,21 +73,22 @@ def cart(request):
             print(book.tour_id)
             if book.status.status == 'заявлен на бронь':
                 b = get_object_or_404(Booking, id=book.id)
-                b.status = get_object_or_404(Status, status='время бронирования истекло')
+                status = Status.objects.get(status='время бронирования истекло')
+                b.status = status
                 b.save()
                 tour = get_object_or_404(Tour, id=book.tour_id)
                 tour.capacity += 1
                 tour.visibility = True
                 tour.save()
-    return render(request, 'consumers/cart.html', dict(bookings=bookings))
+    return render(request, 'consumers/consumer_booking_cart.html', dict(bookings=bookings))
 
 
 @login_required
-def buy_cart(request):
+def consumer_buying_cart(request):
     current_user = request.user
     status = Status.objects.get(status='куплен')
     buyings = Buying.objects.filter(consumer=current_user, status=status).order_by('buy_date')
-    return render(request, 'consumers/buy_cart.html', dict(buyings=buyings))
+    return render(request, 'consumers/consumer_buying_cart.html', dict(buyings=buyings))
 
 
 @login_required
