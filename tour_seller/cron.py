@@ -27,3 +27,7 @@ class MyCronJob(CronJobBase):
                     tour.capacity += 1
                     tour.visibility = True
                     tour.save()
+        for tours in Tour.objects.all().filter(visibility=True):
+            if tours.start_date <= tim:
+                tours.visibility = False
+                tours.save()
