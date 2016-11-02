@@ -5,6 +5,7 @@ from django.test.client import Client
 from account.models import UserProfile
 from django.contrib.auth.models import Group
 
+
 class SimpleTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user("scat@mail.ru", "scat@mail.ru", "123123nn")
@@ -31,7 +32,7 @@ class SimpleTest(TestCase):
         profile.save()
         self.user.save()
 
-        self.client.login(username="teztour@mail.ru",email="teztour@mail.ru", password="123123nn")
+        self.client.login(username="teztour@mail.ru", email="teztour@mail.ru", password="123123nn")
         response = self.client.get('/account/touroperator_dashboard')
         self.assertEqual(response.status_code, 200)
         params = {'tel': '+7800600500'}
