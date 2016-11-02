@@ -7,6 +7,7 @@ from django.template.context_processors import csrf
 from datetime import datetime, timedelta, time
 from django.utils import timezone
 from consumers.models import Booking, Status
+from tours.models import Tour
 from account.models import UserProfile
 from django.contrib import messages
 
@@ -65,11 +66,16 @@ def logon(request):
                 current_user = request.user
                 bookings = Booking.objects.filter(consumer=current_user).order_by('start_date')
                 if book.fin_date <= tim:
-                    print(book.fin_date)
+                    print(book.tour_id)
                     if book.status.status == 'заявлен на бронь':
                         b = get_object_or_404(Booking, id=book.id)
-                        b.status = get_object_or_404(Status, status='время бронирования истекло')
+                        status = Status.objects.get(status='время бронирования истекло')
+                        b.status = status
                         b.save()
+                        tour = get_object_or_404(Tour, id=book.tour_id)
+                        tour.capacity += 1
+                        tour.visibility = True
+                        tour.save()
             if is_touroperator(auth_user):
                 return redirect('/account/touroperator_dashboard')
             else:
