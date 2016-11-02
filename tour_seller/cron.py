@@ -20,9 +20,14 @@ class MyCronJob(CronJobBase):
                 print(book.tour_id)
                 if book.status.status == 'заявлен на бронь':
                     b = get_object_or_404(Booking, id=book.id)
-                    b.status = get_object_or_404(Status, status='время бронирования истекло')
+                    status = Status.objects.get(status='время бронирования истекло')
+                    b.status = status
                     b.save()
                     tour = get_object_or_404(Tour, id=book.tour_id)
                     tour.capacity += 1
                     tour.visibility = True
                     tour.save()
+        for tours in Tour.objects.all().filter(visibility=True):
+            if tours.start_date <= tim:
+                tours.visibility = False
+                tours.save()

@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.generic import ListView
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.template.context_processors import csrf
+from django.utils import timezone
 
 from tours.models import Tour
 from tours.models import AddTourForm, ChangeTourForm
@@ -56,6 +57,12 @@ def touroperator_tour(request):
 @login_required
 def consumer_tour(request):
     tours = Tour.objects.all().order_by('price').filter(visibility=True)
+    tim = (timezone.now())
+    for tour in Tour.objects.all().filter(visibility=True):
+        if tour.start_date <= tim:
+            print(tours.start_date)
+            tour.visibility = False
+            tour.save()
     return render(request, 'tours/consumer_tour.html', {'tours': tours})
 
 
