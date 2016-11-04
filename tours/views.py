@@ -60,7 +60,7 @@ def consumer_tour(request):
     tim = (timezone.now())
     for tour in Tour.objects.all().filter(visibility=True):
         if tour.start_date <= tim:
-            print(tours.start_date)
+            # print(tours.start_date)
             tour.visibility = False
             tour.save()
     return render(request, 'tours/consumer_tour.html', {'tours': tours})

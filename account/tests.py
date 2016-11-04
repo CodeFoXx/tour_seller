@@ -18,6 +18,13 @@ class SimpleTest(TestCase):
             profile.save()
             self.user.save()
 
+        def test_reg(self):
+            response = self.client.get('/account/register')
+            self.assertEqual(response.status_code, 200)
+            params = {'username': 'nvk@mail.ru', 'password1': '123123nn', 'password2': '123123nn'}
+            response = self.client.post('/account/register', params)
+            self.assertEqual(response.status_code, 302)
+
         def test_tourperator(self):
             response = self.client.get('/account/logon')
             self.assertEqual(response.status_code, 200)
@@ -26,11 +33,11 @@ class SimpleTest(TestCase):
             self.assertEqual(response.status_code, 302)
             response = self.client.get('/account/touroperator_dashboard')
             self.assertEqual(response.status_code, 200)
-            params = {'tel': '+7800600500'}
+            params = {'tel': '+7800600500', 'email': 'teztour@mail.ru'}
             response = self.client.post('/account/touroperator_dashboard', params)
             self.assertEqual(response.status_code, 302)
 
-        def test_LogoutAndLogin(self):
+        def test_consumer(self):
             response1 = self.client.get('/account/logon')
             self.assertEqual(response1.status_code, 200)
             params = {'username': 'mmcat@mail.ru', 'password': '123123nn'}
