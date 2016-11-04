@@ -37,7 +37,7 @@ class SimpleTest(TestCase):
             response = self.client.post('/account/touroperator_dashboard', params)
             self.assertEqual(response.status_code, 302)
 
-        def test_consumer(self):
+        def test_valid_consumer(self):
             response1 = self.client.get('/account/logon')
             self.assertEqual(response1.status_code, 200)
             params = {'username': 'mmcat@mail.ru', 'password': '123123nn'}
@@ -48,3 +48,10 @@ class SimpleTest(TestCase):
             params = {'first_name': 'Cat', 'last_name': 'Catalis', 'email': 'catalis@mail.ru', 'tel': '+79234456784'}
             response4 = self.client.post('/account/consumer_dashboard', params)
             self.assertEqual(response4.status_code, 302)
+
+        def test_invalid_consumer(self):
+            response1 = self.client.get('/account/logon')
+            self.assertEqual(response1.status_code, 200)
+            params = {'username': 'mmcat@mail.ru', 'password': '1231nn'}
+            response2 = self.client.post('/account/logon', params)
+            self.assertEqual(response2.status_code, 200)

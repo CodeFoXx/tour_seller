@@ -62,6 +62,8 @@ class BookingTestCase(TestCase):
         params2 = {'name': 'Рождество в Лондоне', 'capacity': '15'}
         response2 = self.client.post('/tours/change_tour/1/', params2)
         self.assertEqual(response2.status_code, 302)
+        response2 = self.client.get('/tours/change_tour/1/', params2)
+        self.assertEqual(response2.status_code, 200)
         request = self.client.get('/tours/details')
         self.assertEqual(request.status_code, 200)
         request = self.client.get('/tours/touroperator_tour')
