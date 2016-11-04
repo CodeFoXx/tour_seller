@@ -45,7 +45,7 @@ class BookingTestCase(TestCase):
         response2 = self.client.post('/account/logon', params1)
         self.assertEqual(response2.status_code, 302)
         response3 = self.client.get('/tours/add_tour')
-        self.assertEqual(response1.status_code, 200)
+        self.assertEqual(response3.status_code, 200)
         params = {'name': 'Рождество', 'price': '100000', 'start_date': '2016-12-20 23:20',
                   'fin_date': '2017-01-10 20:12', 'capacity': '15', 'airline': self.airline.id,
                   'tour_operator': self.new_tour.tour_operator_id,
@@ -102,11 +102,8 @@ class BookingTestCase(TestCase):
         self.assertEqual(request.status_code, 200)
         request = self.client.get('/index')
         self.assertEqual(request.status_code, 200)
-
-
         request = self.client.get('/account/logout_user')
         self.assertEqual(request.status_code, 200)
-
         response1 = self.client.get('/account/logon')
         self.assertEqual(response1.status_code, 200)
         params1 = {'username': 'teztour@mail.ru', 'password': '123123nn'}
@@ -116,7 +113,3 @@ class BookingTestCase(TestCase):
         request.user = self.user
         response = delete_tour(request, self.new_tour.id)
         self.assertEqual(response.status_code, 302)
-
-
-
-
