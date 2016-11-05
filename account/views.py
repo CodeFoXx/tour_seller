@@ -81,7 +81,7 @@ def logon(request):
             else:
                 return redirect('/account/consumer_dashboard')
         else:
-            messages.error(request, 'Invalid login or password.')
+            messages.error(request, 'Неверный логин или пароль.')
             return render(request, 'account/logon.html', c)
     else:
         return render(request, 'account/logon.html', c)

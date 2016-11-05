@@ -1,11 +1,65 @@
 body {
-    /*
-    padding-top: 50px;
-    padding-bottom: 20px;
-    */
+
+}
+
+.img-thumbnail {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
 }
 
 a.tourseller_nav_link {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+a.tourseller_nav_link:link {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+/* visited link */
+a.tourseller_nav_link:visited {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+/* mouse over link */
+a.tourseller_nav_link:hover {
+    color: rgb(224, 224, 224);
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+/* mouse over link */
+a.tourseller_nav_link:active {
     color: rgb(224, 224, 224);
     text-decoration: none;
     margin: 0;
@@ -162,15 +216,6 @@ div.objdiv_body {
     color: #000000;
 }
 
-div.objdiv_body_img {
-    padding-right: 10px;
-    padding-top: 5px;
-    width: 190px;
-    height: 150px;
-    float: right;
-    background-color: rgba(237, 237, 237, 0.45);
-    color: #000000;
-}
 div.objdiv_body_txt {
     padding-top: 5px;
     padding-bottom: 0px;
@@ -291,11 +336,24 @@ div.objdiv_footer_right {
                 }
 
 div.tourinfodiv {
+    width: 100%;
     display: none;
 }
 
-div.tourinforow {
+div.tourinfoleft {
+    display: inline-block;
+}
 
+div.tourinforight {
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 150px;
+    height: 150px;
+}
+
+div.tourinforow {
 }
 
 .tourinforow > i{ vertical-align: middle !important; }

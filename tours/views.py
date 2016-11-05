@@ -30,7 +30,7 @@ def add_tour(request):
         form = AddTourForm(request.POST, request.FILES)
         if form.is_valid():
             t_img = static('noimage.png')
-            if form.cleaned_data['image'] is not None:
+            if form.cleaned_data['image']:
                 t_img = form.cleaned_data['image']
             new_tour = Tour(name=form.cleaned_data['name'], price=form.cleaned_data['price'],
                             start_date=form.cleaned_data['start_date'], fin_date=form.cleaned_data['fin_date'],
@@ -81,11 +81,8 @@ def change_tour(request, cur_id):
         if form.is_valid():
             tour = get_object_or_404(Tour, id=cur_id)
             tour.name = form.cleaned_data['name']
-            if form.cleaned_data['image'] is not None:
+            if form.cleaned_data['image']:
                 tour.image = form.cleaned_data['image']
-            else:
-                t_img = static('noimage.png')
-                tour.image = t_img
             tour.capacity = form.cleaned_data['capacity']
             tour.save()
         return redirect('touroperator_tour')
