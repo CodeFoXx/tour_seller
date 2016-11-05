@@ -1,23 +1,11 @@
-import uuid
-
-from django.contrib.auth.models import User
-from django.core.files.storage import FileSystemStorage
 from django.views.generic import ListView
-from django.shortcuts import render, redirect, render_to_response, get_object_or_404
-from django.template.context_processors import csrf
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-
 from tours.models import Tour
 from tours.models import AddTourForm, ChangeTourForm
-from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
-from django.template import Context, loader
-from django.http import HttpResponse
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from tour_seller import settings
-import os
 
 
 class TourListView(ListView):
