@@ -33,6 +33,9 @@
                                     <i class="material-icons">explore</i> Туроператор: {{ tour.tour_operator.first_name }}
                                 {% endif %}
                             </div>
+                        <div class="tourinforight">
+                                <img src="{{ tour.image.url }}" class="img-thumbnail" ><br/>
+                            </div>
                             <div class="tourinforow">
                                 <i class="material-icons">warning</i> Количество свободных туров: {{ tour.capacity }}
                             </div>
